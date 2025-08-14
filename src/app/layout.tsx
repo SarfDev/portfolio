@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
 
-      <Head>
+      
       <Script
           strategy="lazyOnload"
           src={`https://www.googletagmanager.com/gtag/js?id=G-J1VNSN9861`}
@@ -43,7 +43,7 @@ export default function RootLayout({
             });
                 `}
         </Script> 
-      </Head>
+      
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
