@@ -179,14 +179,14 @@ export default function Home() {
         <div className="container mx-auto px-8 md:px-16 lg:px-24">
           <div className="text-center space-y-8">
             <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-              Stand out in your niche
+              Distinguiti nella tua nicchia
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              Grow your brand with editing that works.
+              Fai crescere il tuo brand con un editing che funziona.
             </p>
-            <a href="https://twitter.com/messages/compose?recipient_id=1800031539557748736" target="_blank">
+            <a href="https://calendly.com/kingsarfo/chiamata-conoscitiva" target="_blank">
             <Button size="lg" className="text-lg px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg shadow-[0_0_20px_rgba(147,51,234,0.5)] hover:shadow-[0_0_30px_rgba(147,51,234,0.7)] transition-all duration-300">
-              Work with me
+              Lavorare con me
             </Button>
             </a>
           </div>
@@ -196,7 +196,7 @@ export default function Home() {
       {/* Lavorato Con */}
       <section ref={clientsRef} className="py-8">
         <div className="container mx-auto px-8 md:px-16 lg:px-24">
-          <h2 className="text-lg font-thin text-center mb-6 text-muted-foreground">Worked with</h2>
+          <h2 className="text-lg font-thin text-center mb-6 text-muted-foreground">Lavorato con</h2>
           
           <div className="flex items-center justify-center space-x-16">
             {clients.map((client, index) => (
@@ -237,7 +237,7 @@ export default function Home() {
         <div className="container mx-auto px-8 md:px-16 lg:px-24">
           <h2 className="text-3xl font-bold text-center mb-12">Short Form Videos</h2>
           
-          <div className="grid grid-cols-2 md:grid-cols-2 md:grid-rows-2 gap-6 max-w-2xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
             {shortFormVideos.map((video, index) => (
               <div key={index} className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
                 <div className="aspect-[9/16]">
@@ -256,7 +256,7 @@ export default function Home() {
       {/* Testimonianze */}
       <section ref={testimonialsRef} className="py-16 bg-secondary/30">
         <div className="container mx-auto px-8 md:px-16 lg:px-24">
-          <h2 className="text-3xl font-bold text-center mb-12">Testimonials</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Testimonianze</h2>
           
           <div className=" md:gap-0 md:flex-row flex flex-col gap-4  justify-center space-x-8">
             {testimonials.map((testimonial, index) => (
