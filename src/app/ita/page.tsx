@@ -31,6 +31,10 @@ export default function Home() {
     {
       name: "Andrew Watt",
       image: "/clienti/ginger.jpg"
+    },
+    {
+      name: "Marco Cappelli",
+      image: "/clienti/marco.jpg"
     }
   ]
 
