@@ -37,8 +37,8 @@ export default function Home() {
   // Long form videos data
   const longFormVideos = [
     {
-      title: "Documentary: The Art of Innovation",
-      youtubeId: "Ln_gcWaaO6E"
+      title: "Creare un sito web con lAI non è mai stato così facile [ Tutorial completo ]",
+      youtubeId: "8i4lXshL6j0"
     },
     {
       title: "SAAS",
