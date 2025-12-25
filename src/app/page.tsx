@@ -71,11 +71,11 @@ export default function Home() {
     },
     {
       title: "Instagram Reel",
-      youtubeId: "smsSyBAsr6w"
+      youtubeId: "PvlpLH0dQP0"
     },
     {
       title: "YouTube Short",
-      youtubeId: "GP3Q7WJz8aU"
+      youtubeId: "leqVl-6jWik"
     }
   ]
 
