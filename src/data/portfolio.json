@@ -1,0 +1,92 @@
+{
+  "clients": [
+    {
+      "name": "Alessio Piacentini",
+      "image": "/clienti/alessio.jpg"
+    },
+    {
+      "name": "Andrew Watt",
+      "image": "/clienti/ginger.jpg"
+    },
+    {
+      "name": "Marco Cappelli",
+      "image": "/clienti/marco.jpg"
+    },
+    {
+        "name":"Andrea Giudice",
+        "image": "/clienti/andrea.jpg"
+    }
+  ],
+  "longFormVideosEN": [
+    {
+      "title": "Creating a website with AI has never been easier [Complete Tutorial]",
+      "youtubeId": "8i4lXshL6j0"
+    },
+    {
+      "title": "SAAS",
+      "youtubeId": "9cg36umXWTg"
+    },
+    {
+      "title": "Corporate Training Series",
+      "youtubeId": "JylQH3O-27Q"
+    },
+    {
+      "title": "Product Launch Event",
+      "youtubeId": "YtFnBwO16_s"
+    }
+  ],
+  "longFormVideosIT": [
+    {
+      "title": "Creare un sito web con l'AI non è mai stato così facile [Tutorial completo]",
+      "youtubeId": "8i4lXshL6j0"
+    },
+    {
+      "title": "SAAS",
+      "youtubeId": "9cg36umXWTg"
+    },
+    {
+      "title": "Serie di Formazione Aziendale",
+      "youtubeId": "JylQH3O-27Q"
+    },
+    {
+      "title": "Evento di Lancio Prodotto",
+      "youtubeId": "YtFnBwO16_s"
+    }
+  ],
+  "shortFormVideosEN": [
+    {
+      "title": "Social Media Ad",
+      "youtubeId": "Atr0pWXsEGg"
+    },
+    {
+      "title": "TikTok Trend",
+      "youtubeId": "M7KeYmMN2QQ"
+    },
+    {
+      "title": "Instagram Reel",
+      "youtubeId": "PvlpLH0dQP0"
+    },
+    {
+      "title": "YouTube Short",
+      "youtubeId": "leqVl-6jWik"
+    }
+  ],
+  "shortFormVideosIT": [
+    {
+      "title": "Annuncio Social Media",
+      "youtubeId": "Atr0pWXsEGg"
+    },
+    {
+      "title": "Tendenza TikTok",
+      "youtubeId": "M7KeYmMN2QQ"
+    },
+    {
+      "title": "Reel Instagram",
+      "youtubeId": "PvlpLH0dQP0"
+    },
+    {
+      "title": "YouTube Short",
+      "youtubeId": "leqVl-6jWik"
+    }
+  ]
+}

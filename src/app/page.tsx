@@ -5,6 +5,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Button } from '@/components/ui/button'
 import YouTubeEmbed from '@/components/YouTubeEmbed'
+import portfolioData from '@/data/portfolio.json'
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -21,63 +22,10 @@ export default function Home() {
   const shortFormRef = useRef<HTMLDivElement>(null)
   const testimonialsRef = useRef<HTMLDivElement>(null)
 
-
-  // Client data
-  // Client data
-  const clients = [
-    {
-      name: "Alessio Piacentini",
-      image: "/clienti/alessio.jpg"
-    },
-    {
-      name: "Andrew Watt",
-      image: "/clienti/ginger.jpg"
-    },
-    {
-      name: "Marco Cappelli",
-      image: "/clienti/marco.jpg"
-    }
-  ]
-
-  // Long form videos data
-  const longFormVideos = [
-    {
-      title: "Creare un sito web con lAI non è mai stato così facile [ Tutorial completo ]",
-      youtubeId: "8i4lXshL6j0"
-    },
-    {
-      title: "SAAS",
-      youtubeId: "3bisHVntWPU"
-    },
-    {
-      title: "Corporate Training Series",
-      youtubeId: "JylQH3O-27Q"
-    },
-    {
-      title: "Product Launch Event",
-      youtubeId: "YtFnBwO16_s"
-    }
-  ]
-
-  // Short form videos data
-  const shortFormVideos = [
-    {
-      title: "Social Media Ad",
-      youtubeId: "G4OXdW-W9g8"
-    },
-    {
-      title: "TikTok Trend",
-      youtubeId: "KYtCxRwzkT4"
-    },
-    {
-      title: "Instagram Reel",
-      youtubeId: "PvlpLH0dQP0"
-    },
-    {
-      title: "YouTube Short",
-      youtubeId: "leqVl-6jWik"
-    }
-  ]
+  // Import data from JSON
+  const clients = portfolioData.clients
+  const longFormVideos = portfolioData.longFormVideosEN
+  const shortFormVideos = portfolioData.shortFormVideosEN
 
   // Testimonials data
   const testimonials = [

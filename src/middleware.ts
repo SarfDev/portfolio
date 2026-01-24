@@ -9,16 +9,18 @@ export function middleware(req: NextRequest) {
     return NextResponse.next()
   }
 
-  // Prendi la lingua del browser
-  const lang = req.headers.get('accept-language')?.split(',')[0] || ''
+  // Prendi la posizione geografica dal header (funziona su Vercel e altri provider)
+  const country = req.headers.get('x-vercel-ip-country') || 
+                  req.headers.get('cf-ipcountry') || 
+                  req.headers.get('geoip-country') || ''
 
-  // Se italiano -> redirect a /ita
-  if (lang.startsWith('it')) {
+  // Se in Italia -> redirect a /ita
+  if (country.toUpperCase() === 'IT') {
     url.pathname = '/ita'
     return NextResponse.redirect(url)
   }
 
-  // Altrimenti resta su /
+  // Altrimenti resta su / (inglese)
   return NextResponse.next()
 }
 
