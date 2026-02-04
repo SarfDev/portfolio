@@ -193,17 +193,6 @@ export default function Home() {
       <section id="home" ref={heroRef} className="pt-32 pb-24 bg-gradient-to-b from-black via-blue-950/20 to-black">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="text-center space-y-8">
-            
-            {/* 🎬 LOTTIE ANIMATION CONTAINER */}
-            <div 
-              id="lottie-container" 
-              className="w-full max-w-2xl mx-auto mb-8 h-64 flex items-center justify-center"
-            >
-              {/* Inserisci qui la tua animazione Lottie */}
-              <div className="text-gray-400 text-sm">
-                {/* Placeholder - La tua animazione Lottie andrà qui */}
-              </div>
-            </div>
 
             <h1 className="text-6xl md:text-8xl font-bold leading-tight text-white tracking-tight">
               Stand out in <br />
