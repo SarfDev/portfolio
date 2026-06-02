@@ -4,40 +4,35 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import YouTubeEmbed from '@/components/YouTubeEmbed'
+import InstagramEmbed from '@/components/InstagramEmbed'
+import { horizontalLoop } from '@/lib/horizontalLoop'
 import portfolioData from '@/data/portfolio.json'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
-// Inline SVG icons — no emoji, no external dependency
 const featureIcons = [
-  // Unlimited Revisions — refresh loop
   <svg key="refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M1 4v6h6M23 20v-6h-6" />
     <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4-4.64 4.36A9 9 0 0 1 3.51 15" />
   </svg>,
-  // Hook Focused — target
   <svg key="target" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="10" />
     <circle cx="12" cy="12" r="6" />
     <circle cx="12" cy="12" r="2" />
   </svg>,
-  // Custom Storyboard — layout grid
   <svg key="layout" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <rect x="3" y="3" width="18" height="18" rx="2" />
     <path d="M3 9h18M9 21V9" />
   </svg>,
-  // Direct Support — message
   <svg key="message" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
   </svg>,
-  // Fast Delivery — clock
   <svg key="clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="10" />
     <polyline points="12,6 12,12 16,14" />
   </svg>,
-  // Pro Tools — sliders
   <svg key="sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <line x1="4" y1="21" x2="4" y2="14" /><line x1="4" y1="10" x2="4" y2="3" />
     <line x1="12" y1="21" x2="12" y2="12" /><line x1="12" y1="8" x2="12" y2="3" />
@@ -49,9 +44,12 @@ const featureIcons = [
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [scrolled, setScrolled] = useState(false)
 
   const heroRef = useRef<HTMLDivElement>(null)
+  const statsRef = useRef<HTMLDivElement>(null)
   const clientsRef = useRef<HTMLDivElement>(null)
+  const clientsTrackRef = useRef<HTMLDivElement>(null)
   const longFormRef = useRef<HTMLDivElement>(null)
   const shortFormRef = useRef<HTMLDivElement>(null)
   const featuresRef = useRef<HTMLDivElement>(null)
@@ -63,76 +61,41 @@ export default function Home() {
   const shortFormVideos = portfolioData.shortFormVideosEN
 
   const features = [
-    {
-      title: "Unlimited Revisions",
-      description: "We work together until you're 100% satisfied with the result"
-    },
-    {
-      title: "Hook Focused",
-      description: "First 3 seconds optimized to grab attention and boost retention"
-    },
-    {
-      title: "Custom Storyboard",
-      description: "Tailored to your brand avatar and content strategy"
-    },
-    {
-      title: "Direct Support",
-      description: "WhatsApp/Telegram communication for fast responses"
-    },
-    {
-      title: "Fast Delivery",
-      description: "Long form: 2–7 days · Reels: 3h–1 day based on complexity"
-    },
-    {
-      title: "Pro Tools",
-      description: "Premiere Pro, After Effects, DaVinci Resolve"
-    }
+    { title: "Unlimited Revisions", description: "We work together until you're 100% satisfied with the result" },
+    { title: "Hook Focused", description: "First 3 seconds optimized to grab attention and boost retention" },
+    { title: "Custom Storyboard", description: "Tailored to your brand avatar and content strategy" },
+    { title: "Direct Support", description: "WhatsApp/Telegram communication for fast responses" },
+    { title: "Fast Delivery", description: "Long form: 2–7 days · Reels: 3h–1 day based on complexity" },
+    { title: "Pro Tools", description: "Premiere Pro, After Effects, DaVinci Resolve" }
+  ]
+
+  const stats = [
+    { value: "50+", label: "Videos Delivered" },
+    { value: "8", label: "Clients Served" },
+    { value: "3h", label: "Fastest Turnaround" },
+    { value: "100%", label: "Satisfaction Rate" }
   ]
 
   const faqs = [
-    {
-      question: "What's your turnaround time?",
-      answer: "Long form videos: 5–7 days for complex animations, 2–3 days for simpler edits. Reels/Shorts: 1 day for complex animations, 3 hours for simple videos."
-    },
-    {
-      question: "What software do you use?",
-      answer: "I use industry-standard tools: Adobe Premiere Pro for editing, After Effects for motion graphics and animations, and DaVinci Resolve for color grading."
-    },
-    {
-      question: "Do you offer revisions?",
-      answer: "Yes. Unlimited revisions are included. I'll keep working on your video until you're completely satisfied with the result."
-    },
-    {
-      question: "How do we collaborate?",
-      answer: "You send me the raw files via SwissTransfer or Google Drive along with your brief and references. I edit the video and upload it to Frame.io for quick and efficient revisions."
-    },
-    {
-      question: "How do we stay in touch?",
-      answer: "We communicate via WhatsApp or Telegram for fast and direct communication throughout the project."
-    },
-    {
-      question: "What's your pricing?",
-      answer: "Pricing depends on project complexity and requirements. I also offer packages for long-term collaborations. Contact me for a quote."
-    }
+    { question: "What's your turnaround time?", answer: "Long form videos: 5–7 days for complex animations, 2–3 days for simpler edits. Reels/Shorts: 1 day for complex animations, 3 hours for simple videos." },
+    { question: "What software do you use?", answer: "I use industry-standard tools: Adobe Premiere Pro for editing, After Effects for motion graphics and animations, and DaVinci Resolve for color grading." },
+    { question: "Do you offer revisions?", answer: "Yes. Unlimited revisions are included. I'll keep working on your video until you're completely satisfied with the result." },
+    { question: "How do we collaborate?", answer: "You send me the raw files via SwissTransfer or Google Drive along with your brief and references. I edit the video and upload it to Frame.io for quick and efficient revisions." },
+    { question: "How do we stay in touch?", answer: "We communicate via WhatsApp or Telegram for fast and direct communication throughout the project." },
+    { question: "What's your pricing?", answer: "Pricing depends on project complexity and requirements. I also offer packages for long-term collaborations. Contact me for a quote." }
   ]
 
   const testimonials = [
-    {
-      platform: "WhatsApp",
-      screenshot: "/testimonials/primo.png",
-      description: "WhatsApp message"
-    },
-    {
-      platform: "Instagram",
-      screenshot: "/testimonials/secondo.png",
-      description: "Direct message"
-    },
-    {
-      platform: "Email",
-      screenshot: "/testimonials/terzo.png",
-      description: "Email review"
-    }
+    { platform: "WhatsApp", screenshot: "/testimonials/primo.png", description: "WhatsApp message" },
+    { platform: "Instagram", screenshot: "/testimonials/secondo.png", description: "Direct message" },
+    { platform: "Email", screenshot: "/testimonials/terzo.png", description: "Email review" }
   ]
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   useEffect(() => {
     if (heroRef.current) {
@@ -142,8 +105,7 @@ export default function Home() {
       )
     }
 
-    const sections = [clientsRef, longFormRef, shortFormRef, featuresRef, testimonialsRef, faqRef]
-
+    const sections = [statsRef, clientsRef, longFormRef, shortFormRef, featuresRef, testimonialsRef, faqRef]
     sections.forEach((sectionRef) => {
       if (sectionRef.current) {
         gsap.fromTo(sectionRef.current,
@@ -163,38 +125,55 @@ export default function Home() {
       }
     })
 
+    return () => { ScrollTrigger.getAll().forEach(t => t.kill()) }
+  }, [])
+
+  // Seamless clients marquee via GSAP horizontalLoop helper
+  useEffect(() => {
+    const track = clientsTrackRef.current
+    if (!track) return
+    const items = gsap.utils.toArray<HTMLElement>(track.children)
+    const loop = horizontalLoop(items, { repeat: -1, speed: 0.7, paddingRight: 40 })
+
+    const pause = () => loop.timeScale(0.15)
+    const resume = () => loop.timeScale(1)
+    track.addEventListener('mouseenter', pause)
+    track.addEventListener('mouseleave', resume)
+
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+      track.removeEventListener('mouseenter', pause)
+      track.removeEventListener('mouseleave', resume)
+      loop.kill()
     }
   }, [])
 
   return (
-    <div className="min-h-[100dvh] bg-[#0A0A0A]">
+    <div className="min-h-[100dvh] bg-[#FAFAF8]">
 
-      {/* Navigation — floating pill */}
-      <nav className="fixed top-5 inset-x-0 z-50 px-4 md:px-6">
-        <div className="max-w-5xl mx-auto flex items-center justify-between bg-[#111111]/90 backdrop-blur-md border border-white/10 rounded-full px-5 py-3">
-          <span className="text-[#F0EFED] font-semibold tracking-tight text-sm">King Osei</span>
+      {/* Navigation */}
+      <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-black/[0.06]' : 'bg-white/80 backdrop-blur-sm'}`}>
+        <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+          <span className="text-[#111827] font-bold tracking-tight text-base">King Osei</span>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-7">
-            <a href="#home" className="text-[#888] hover:text-[#F0EFED] transition-colors text-sm">Home</a>
-            <a href="#portfolio" className="text-[#888] hover:text-[#F0EFED] transition-colors text-sm">Portfolio</a>
-            <a href="#features" className="text-[#888] hover:text-[#F0EFED] transition-colors text-sm">Features</a>
-            <a href="#faq" className="text-[#888] hover:text-[#F0EFED] transition-colors text-sm">FAQ</a>
+          <div className="hidden md:flex items-center gap-8">
+            <a href="#home" className="text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">Home</a>
+            <a href="#portfolio" className="text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">Portfolio</a>
+            <a href="#features" className="text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">Services</a>
+            <a href="#faq" className="text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">FAQ</a>
           </div>
 
           <a
             href="https://twitter.com/messages/compose?recipient_id=1800031539557748736"
             target="_blank"
-            className="hidden md:inline-flex items-center gap-2 bg-[#D4A853] text-[#0A0A0A] px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#C49A45] active:scale-[0.97] transition-all"
+            className="hidden md:inline-flex items-center gap-2 bg-[#1B4FD8] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[#1641B8] active:scale-[0.97] transition-all shadow-sm"
           >
             Work with me
           </a>
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-1.5 text-[#888] hover:text-[#F0EFED] transition-colors"
+            className="md:hidden p-1.5 text-[#6B7280] hover:text-[#111827] transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -212,16 +191,16 @@ export default function Home() {
 
         {/* Mobile dropdown */}
         {isMobileMenuOpen && (
-          <div className="mt-2 bg-[#111111]/95 backdrop-blur-md border border-white/10 rounded-2xl p-5 space-y-1">
-            <a href="#home" className="block py-2.5 text-[#888] hover:text-[#F0EFED] transition-colors text-sm" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
-            <a href="#portfolio" className="block py-2.5 text-[#888] hover:text-[#F0EFED] transition-colors text-sm" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</a>
-            <a href="#features" className="block py-2.5 text-[#888] hover:text-[#F0EFED] transition-colors text-sm" onClick={() => setIsMobileMenuOpen(false)}>Features</a>
-            <a href="#faq" className="block py-2.5 text-[#888] hover:text-[#F0EFED] transition-colors text-sm" onClick={() => setIsMobileMenuOpen(false)}>FAQ</a>
-            <div className="pt-3 border-t border-white/[0.06]">
+          <div className="border-t border-black/[0.06] bg-white px-6 py-4 space-y-1">
+            <a href="#home" className="block py-2.5 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
+            <a href="#portfolio" className="block py-2.5 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</a>
+            <a href="#features" className="block py-2.5 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Services</a>
+            <a href="#faq" className="block py-2.5 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>FAQ</a>
+            <div className="pt-3 border-t border-black/[0.06]">
               <a
                 href="https://twitter.com/messages/compose?recipient_id=1800031539557748736"
                 target="_blank"
-                className="inline-flex items-center gap-2 bg-[#D4A853] text-[#0A0A0A] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#C49A45] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#1B4FD8] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[#1641B8] transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Work with me
@@ -231,72 +210,116 @@ export default function Home() {
         )}
       </nav>
 
-      {/* Hero — left-aligned */}
-      <section id="home" ref={heroRef} className="min-h-[100dvh] flex items-center pt-28 pb-20">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="max-w-2xl">
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#D4A853] mb-8">
+      {/* Hero */}
+      <section id="home" ref={heroRef} className="min-h-[100dvh] flex items-center pt-24 pb-20 relative overflow-hidden">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#EFF6FF] rounded-full translate-x-1/2 -translate-y-1/3 opacity-60" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#EFF6FF] rounded-full -translate-x-1/3 translate-y-1/4 opacity-40" />
+        </div>
+        <div className="container mx-auto px-6 max-w-6xl relative">
+          <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
+            <span className="inline-flex items-center gap-2 bg-[#EFF6FF] text-[#1B4FD8] text-xs font-semibold px-3 py-1.5 rounded-full mb-8 uppercase tracking-widest">
               Video Editor
-            </p>
-            <h1 className="text-6xl md:text-8xl font-bold leading-[1.0] tracking-tight text-[#F0EFED] mb-6">
-              Stand out<br />
-              in your<br />
-              niche.
+            </span>
+            <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight text-[#111827] mb-6">
+              Stand out in your <span className="text-[#1B4FD8]">niche.</span>
             </h1>
-            <p className="text-lg text-[#888] max-w-sm mb-10 leading-relaxed">
-              Grow your brand with editing that works.
+            <p className="text-xl text-[#6B7280] max-w-md mb-10 leading-relaxed">
+              Grow your brand with editing that works. Professional videos that captivate and convert.
             </p>
-            <a
-              href="https://twitter.com/messages/compose?recipient_id=1800031539557748736"
-              target="_blank"
-            >
-              <button className="inline-flex items-center gap-3 bg-[#D4A853] text-[#0A0A0A] px-7 py-4 rounded-full font-semibold hover:bg-[#C49A45] active:scale-[0.97] transition-all text-base">
-                Work with me
-                <span className="w-6 h-6 rounded-full bg-[#0A0A0A]/15 flex items-center justify-center text-sm leading-none">→</span>
-              </button>
-            </a>
+            <div className="flex items-center justify-center gap-4 flex-wrap">
+              <a
+                href="https://twitter.com/messages/compose?recipient_id=1800031539557748736"
+                target="_blank"
+              >
+                <button className="inline-flex items-center gap-3 bg-[#1B4FD8] text-white px-7 py-4 rounded-lg font-semibold hover:bg-[#1641B8] active:scale-[0.97] transition-all text-base shadow-md shadow-blue-200">
+                  Work with me
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </button>
+              </a>
+              <a href="#portfolio" className="inline-flex items-center gap-2 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">
+                View portfolio
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </a>
+            </div>
+
+            {/* Recent VSL video */}
+            <div className="mt-14 w-full max-w-4xl">
+              <div className="aspect-video rounded-2xl overflow-hidden border border-black/[0.08] shadow-lg bg-black">
+                <iframe
+                  src="https://player.vimeo.com/video/1197611523?title=0&byline=0&portrait=0"
+                  title="Recent VSL"
+                  className="w-full h-full"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <p className="mt-3 text-[#1B4FD8] font-semibold text-base">video VSL recente</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Worked With */}
-      <section ref={clientsRef} className="py-20 border-t border-white/[0.06]">
+      {/* Stats */}
+      <section ref={statsRef} className="py-16 bg-white border-y border-black/[0.06]">
         <div className="container mx-auto px-6 max-w-6xl">
-          <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#555] text-center mb-12">
-            Worked with
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16">
-            {clients.map((client, index) => (
-              <div key={index} className="text-center group">
-                <div className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-4 rounded-xl overflow-hidden bg-[#1A1A1A] border border-white/[0.08] group-hover:border-white/[0.2] transition-all duration-300">
-                  <img
-                    src={client.image}
-                    alt={client.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <p className="text-sm text-[#888] group-hover:text-[#F0EFED] transition-colors">
-                  {client.name}
-                </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, i) => (
+              <div key={i} className="text-center">
+                <p className="text-4xl md:text-5xl font-bold text-[#1B4FD8] mb-2">{stat.value}</p>
+                <p className="text-sm text-[#6B7280] font-medium">{stat.label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Worked With */}
+      <section ref={clientsRef} className="py-20">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-12">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#6B7280] mb-3">Trusted by creators</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#111827]">Worked with</h2>
+          </div>
+          <div className="marquee-mask overflow-hidden">
+            <div ref={clientsTrackRef} className="flex w-max">
+              {[...clients, ...clients].map((client, index) => (
+                <div key={index} className="text-center group shrink-0 w-28 md:w-32 px-2">
+                  <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 rounded-2xl overflow-hidden bg-white border border-black/[0.08] shadow-sm group-hover:shadow-md group-hover:border-[#1B4FD8]/20 transition-all duration-300">
+                    <img
+                      src={client.image}
+                      alt={client.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <p className="text-sm text-[#6B7280] font-medium group-hover:text-[#111827] transition-colors truncate">
+                    {client.name}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Long Form Videos */}
-      <section id="portfolio" ref={longFormRef} className="py-24 border-t border-white/[0.06]">
+      <section id="portfolio" ref={longFormRef} className="py-24 bg-white border-y border-black/[0.06]">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="mb-12">
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#D4A853] mb-3">Portfolio</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#F0EFED] tracking-tight">Long Form Videos</h2>
-            <p className="text-[#888] mt-2">Engaging content that keeps your audience watching</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1B4FD8] mb-3">Portfolio</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Long Form Videos</h2>
+            <p className="text-[#6B7280] mt-2 text-lg">Engaging content that keeps your audience watching</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {longFormVideos.map((video, index) => (
               <div
                 key={index}
-                className="bg-[#111111] rounded-xl overflow-hidden border border-white/[0.08] hover:border-white/[0.16] transition-all duration-300"
+                className="bg-[#F9FAFB] rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:border-[#1B4FD8]/20 transition-all duration-300"
               >
                 <div className="aspect-video">
                   <YouTubeEmbed
@@ -312,25 +335,33 @@ export default function Home() {
       </section>
 
       {/* Short Form Videos */}
-      <section ref={shortFormRef} className="py-24 border-t border-white/[0.06]">
+      <section ref={shortFormRef} className="py-24">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="mb-12">
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#D4A853] mb-3">Short Form</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#F0EFED] tracking-tight">Short Form Videos</h2>
-            <p className="text-[#888] mt-2">Vertical content built for social growth</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1B4FD8] mb-3">Short Form</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Short Form Videos</h2>
+            <p className="text-[#6B7280] mt-2 text-lg">Vertical content built for social growth</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl">
             {shortFormVideos.map((video, index) => (
               <div
                 key={index}
-                className="bg-[#111111] rounded-xl overflow-hidden border border-white/[0.08] hover:border-white/[0.16] transition-all duration-300"
+                className="bg-white rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:border-[#1B4FD8]/20 transition-all duration-300"
               >
                 <div className="aspect-[9/16]">
-                  <YouTubeEmbed
-                    videoId={video.youtubeId}
-                    title={video.title}
-                    className="w-full h-full"
-                  />
+                  {'instagramId' in video ? (
+                    <InstagramEmbed
+                      reelId={video.instagramId!}
+                      title={video.title}
+                      className="w-full h-full"
+                    />
+                  ) : (
+                    <YouTubeEmbed
+                      videoId={video.youtubeId!}
+                      title={video.title}
+                      className="w-full h-full"
+                    />
+                  )}
                 </div>
               </div>
             ))}
@@ -338,34 +369,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features — 2-col numbered list */}
-      <section id="features" ref={featuresRef} className="py-24 border-t border-white/[0.06]">
+      {/* Features */}
+      <section id="features" ref={featuresRef} className="py-24 bg-white border-y border-black/[0.06]">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="mb-16">
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#D4A853] mb-3">Services</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#F0EFED] tracking-tight">What I offer</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1B4FD8] mb-3">Services</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">What I offer</h2>
+            <p className="text-[#6B7280] mt-2 text-lg">Everything you need for professional video content</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="border-t border-white/[0.08] py-8 pr-8 flex gap-5 group"
+                className="bg-[#FAFAF8] rounded-2xl p-6 border border-black/[0.06] hover:shadow-md hover:border-[#1B4FD8]/20 transition-all duration-300 group"
               >
-                <span className="text-xs font-mono text-[#444] pt-1 w-6 flex-shrink-0 tabular-nums">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <div className="flex items-center gap-3 mb-2.5">
-                    <div className="w-5 h-5 text-[#D4A853] flex-shrink-0">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-[#EFF6FF] text-[#1B4FD8] flex items-center justify-center flex-shrink-0 group-hover:bg-[#1B4FD8] group-hover:text-white transition-all duration-300">
+                    <div className="w-5 h-5">
                       {featureIcons[index]}
                     </div>
-                    <h3 className="font-semibold text-[#F0EFED] text-sm">
-                      {feature.title}
-                    </h3>
                   </div>
-                  <p className="text-[#888] text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
+                  <div>
+                    <div className="flex items-center gap-3 mb-1.5">
+                      <span className="text-xs font-mono text-[#9CA3AF] tabular-nums">{String(index + 1).padStart(2, '0')}</span>
+                      <h3 className="font-semibold text-[#111827]">{feature.title}</h3>
+                    </div>
+                    <p className="text-[#6B7280] text-sm leading-relaxed">{feature.description}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -374,25 +404,25 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section ref={testimonialsRef} className="py-24 border-t border-white/[0.06]">
+      <section ref={testimonialsRef} className="py-24">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="mb-12">
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#D4A853] mb-3">Social proof</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#F0EFED] tracking-tight">What clients say</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1B4FD8] mb-3">Social proof</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">What clients say</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="rounded-xl overflow-hidden border border-white/[0.08] hover:border-white/[0.16] transition-all duration-300 bg-[#111111]"
+                className="rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:border-[#1B4FD8]/20 transition-all duration-300 bg-white"
               >
                 <img
                   src={testimonial.screenshot}
                   alt={`${testimonial.platform} testimonial`}
                   className="w-full h-full object-contain"
                 />
-                <div className="px-4 py-3 border-t border-white/[0.06]">
-                  <p className="text-xs font-mono text-[#555] uppercase tracking-[0.1em]">
+                <div className="px-4 py-3 border-t border-black/[0.06] bg-[#FAFAF8]">
+                  <p className="text-xs font-semibold text-[#9CA3AF] uppercase tracking-[0.1em]">
                     {testimonial.description}
                   </p>
                 </div>
@@ -402,67 +432,69 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ — no card boxes, separator only */}
-      <section id="faq" ref={faqRef} className="py-24 border-t border-white/[0.06]">
+      {/* FAQ */}
+      <section id="faq" ref={faqRef} className="py-24 bg-white border-y border-black/[0.06]">
         <div className="container mx-auto px-6 max-w-3xl">
           <div className="mb-16">
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#D4A853] mb-3">FAQ</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#F0EFED] tracking-tight">Frequently asked</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1B4FD8] mb-3">FAQ</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Frequently asked</h2>
           </div>
-          <div>
+          <div className="divide-y divide-black/[0.06]">
             {faqs.map((faq, index) => (
-              <div key={index} className="border-t border-white/[0.08]">
+              <div key={index}>
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full py-6 flex items-center justify-between text-left group"
+                  className="w-full py-5 flex items-center justify-between text-left group"
                 >
-                  <span className="font-medium text-[#F0EFED] pr-8 text-sm leading-relaxed group-hover:text-white transition-colors">
+                  <span className="font-semibold text-[#111827] pr-8 leading-relaxed group-hover:text-[#1B4FD8] transition-colors">
                     {faq.question}
                   </span>
-                  <span className="text-[#555] flex-shrink-0 text-xl font-light leading-none w-5 text-center">
-                    {openFaq === index ? '×' : '+'}
+                  <span className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 ${openFaq === index ? 'bg-[#1B4FD8] text-white' : 'bg-[#F3F4F6] text-[#6B7280]'}`}>
+                    <svg className={`w-3.5 h-3.5 transition-transform duration-200 ${openFaq === index ? 'rotate-45' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+                    </svg>
                   </span>
                 </button>
-                <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    openFaq === index ? 'max-h-96 pb-6' : 'max-h-0'
-                  }`}
-                >
-                  <p className="text-[#888] leading-relaxed text-sm">
-                    {faq.answer}
-                  </p>
+                <div className={`overflow-hidden transition-all duration-300 ${openFaq === index ? 'max-h-96 pb-5' : 'max-h-0'}`}>
+                  <p className="text-[#6B7280] leading-relaxed">{faq.answer}</p>
                 </div>
               </div>
             ))}
-            <div className="border-t border-white/[0.08]" />
           </div>
         </div>
       </section>
 
-      {/* CTA — dark background, no blue gradient */}
-      <section className="py-32 border-t border-white/[0.06]">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#D4A853] mb-6">Get in touch</p>
-          <h2 className="text-4xl md:text-6xl font-bold text-[#F0EFED] tracking-tight mb-10 max-w-2xl leading-[1.05]">
+      {/* CTA */}
+      <section className="py-32 bg-[#1B4FD8] relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full translate-x-1/3 -translate-y-1/3" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full -translate-x-1/4 translate-y-1/4" />
+        </div>
+        <div className="container mx-auto px-6 max-w-6xl relative">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-200 mb-6">Get in touch</p>
+          <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 max-w-2xl leading-[1.05]">
             Ready to grow your audience?
           </h2>
+          <p className="text-blue-200 text-lg mb-10 max-w-md">Let's create content that stands out and converts viewers into fans.</p>
           <a
             href="https://twitter.com/messages/compose?recipient_id=1800031539557748736"
             target="_blank"
           >
-            <button className="inline-flex items-center gap-3 bg-[#D4A853] text-[#0A0A0A] px-7 py-4 rounded-full font-semibold hover:bg-[#C49A45] active:scale-[0.97] transition-all text-base">
+            <button className="inline-flex items-center gap-3 bg-white text-[#1B4FD8] px-7 py-4 rounded-lg font-bold hover:bg-blue-50 active:scale-[0.97] transition-all text-base shadow-lg">
               Let's work together
-              <span className="w-6 h-6 rounded-full bg-[#0A0A0A]/15 flex items-center justify-center text-sm leading-none">→</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </button>
           </a>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 border-t border-white/[0.06]">
+      <footer className="py-8 bg-white border-t border-black/[0.06]">
         <div className="container mx-auto px-6 max-w-6xl flex items-center justify-between">
-          <p className="text-xs text-[#555]">© 2026 King Osei</p>
-          <p className="text-xs text-[#555] font-mono">Video Editor</p>
+          <p className="text-sm text-[#9CA3AF]">© 2026 King Osei</p>
+          <p className="text-sm text-[#9CA3AF] font-medium">Video Editor</p>
         </div>
       </footer>
     </div>

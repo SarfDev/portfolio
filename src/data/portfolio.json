@@ -13,8 +13,20 @@
       "image": "/clienti/marco.jpg"
     },
     {
-        "name":"Andrea Giudice",
-        "image": "/clienti/andrea.jpg"
+      "name": "Andrea Giudice",
+      "image": "/clienti/andrea.jpg"
+    },
+    {
+      "name": "Andrea Delle Foglie",
+      "image": "/clienti/andreaDelleFoglie.jpg"
+    },
+    {
+      "name": "Asian Consulting",
+      "image": "/clienti/asianConsulting.jpg"
+    },
+    {
+      "name": "Host Viaggi",
+      "image": "/clienti/hostViaggi.jpg"
     }
   ],
   "longFormVideosEN": [
@@ -60,7 +72,7 @@
     },
     {
       "title": "TikTok Trend",
-      "youtubeId": "M7KeYmMN2QQ"
+      "instagramId": "DXzo-EppgBJ"
     },
     {
       "title": "Instagram Reel",
@@ -68,7 +80,7 @@
     },
     {
       "title": "YouTube Short",
-      "youtubeId": "leqVl-6jWik"
+      "instagramId": "DU5aPdrApiA"
     }
   ],
   "shortFormVideosIT": [
@@ -78,7 +90,7 @@
     },
     {
       "title": "Tendenza TikTok",
-      "youtubeId": "M7KeYmMN2QQ"
+      "instagramId": "DXzo-EppgBJ"
     },
     {
       "title": "Reel Instagram",
@@ -86,7 +98,7 @@
     },
     {
       "title": "YouTube Short",
-      "youtubeId": "leqVl-6jWik"
+      "instagramId": "DU5aPdrApiA"
     }
   ]
 }
