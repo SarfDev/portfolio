@@ -101,6 +101,43 @@
   mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }
 
+/* Subtle dotted grid for the hero — uses the brand blue at very low opacity */
+.bg-grid {
+  background-image: radial-gradient(rgba(27, 79, 216, 0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 35%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 35%, #000 40%, transparent 100%);
+}
+
+/* Gradient ink for highlighted words — stays within the brand blue range */
+.text-gradient {
+  background: linear-gradient(135deg, #1B4FD8 0%, #4F7BE8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Soft branded glow behind the hero video */
+.hero-glow {
+  box-shadow: 0 30px 80px -20px rgba(27, 79, 216, 0.35);
+}
+
+/* Pulsing availability dot */
+@keyframes pulseRing {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  70% { transform: scale(2.2); opacity: 0; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.pulse-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: pulseRing 2s ease-out infinite;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }

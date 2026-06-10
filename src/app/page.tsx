@@ -12,6 +12,8 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
+const CTA_LINK = "https://twitter.com/messages/compose?recipient_id=1800031539557748736"
+
 const featureIcons = [
   <svg key="refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M1 4v6h6M23 20v-6h-6" />
@@ -41,6 +43,17 @@ const featureIcons = [
   </svg>,
 ]
 
+function Eyebrow({ children, tone = "primary" }: { children: React.ReactNode; tone?: "primary" | "muted" }) {
+  const color = tone === "primary" ? "text-[#1B4FD8]" : "text-[#6B7280]"
+  const line = tone === "primary" ? "bg-[#1B4FD8]" : "bg-[#9CA3AF]"
+  return (
+    <p className={`flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] ${color} mb-3`}>
+      <span className={`h-px w-6 ${line}`} />
+      {children}
+    </p>
+  )
+}
+
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
@@ -53,6 +66,7 @@ export default function Home() {
   const longFormRef = useRef<HTMLDivElement>(null)
   const shortFormRef = useRef<HTMLDivElement>(null)
   const featuresRef = useRef<HTMLDivElement>(null)
+  const processRef = useRef<HTMLDivElement>(null)
   const testimonialsRef = useRef<HTMLDivElement>(null)
   const faqRef = useRef<HTMLDivElement>(null)
 
@@ -61,19 +75,25 @@ export default function Home() {
   const shortFormVideos = portfolioData.shortFormVideosEN
 
   const features = [
-    { title: "Unlimited Revisions", description: "We work together until you're 100% satisfied with the result" },
-    { title: "Hook Focused", description: "First 3 seconds optimized to grab attention and boost retention" },
-    { title: "Custom Storyboard", description: "Tailored to your brand avatar and content strategy" },
-    { title: "Direct Support", description: "WhatsApp/Telegram communication for fast responses" },
-    { title: "Fast Delivery", description: "Long form: 2–7 days · Reels: 3h–1 day based on complexity" },
-    { title: "Pro Tools", description: "Premiere Pro, After Effects, DaVinci Resolve" }
+    { title: "Unlimited Revisions", description: "We refine the edit together until you're 100% happy — no extra cost, no limits." },
+    { title: "Hook-First Editing", description: "The first 3 seconds are engineered to stop the scroll and lift your retention." },
+    { title: "Custom Storyboard", description: "Every cut is built around your brand voice, your avatar and your content strategy." },
+    { title: "Direct Support", description: "You talk straight to me on WhatsApp or Telegram — fast replies, zero middlemen." },
+    { title: "Fast Delivery", description: "Long form in 2–7 days · Reels from 3h to 1 day, depending on complexity." },
+    { title: "Pro Toolset", description: "Premiere Pro, After Effects and DaVinci Resolve — broadcast-grade finishing." }
   ]
 
   const stats = [
-    { value: "50+", label: "Videos Delivered" },
-    { value: "8", label: "Clients Served" },
-    { value: "3h", label: "Fastest Turnaround" },
-    { value: "100%", label: "Satisfaction Rate" }
+    { value: "50+", label: "Videos delivered" },
+    { value: "8", label: "Brands served" },
+    { value: "3h", label: "Fastest turnaround" },
+    { value: "100%", label: "Satisfaction rate" }
+  ]
+
+  const process = [
+    { step: "01", title: "Send the brief", description: "Drop your raw footage, references and goals via Drive or SwissTransfer. We align on the vision before a single cut." },
+    { step: "02", title: "I edit", description: "Hook, pacing, motion graphics and color — crafted around your brand and the audience you want to reach." },
+    { step: "03", title: "Review & launch", description: "Unlimited Frame.io revisions until it's perfect. You get final files ready to post and grow." }
   ]
 
   const faqs = [
@@ -105,7 +125,7 @@ export default function Home() {
       )
     }
 
-    const sections = [statsRef, clientsRef, longFormRef, shortFormRef, featuresRef, testimonialsRef, faqRef]
+    const sections = [statsRef, clientsRef, longFormRef, shortFormRef, featuresRef, processRef, testimonialsRef, faqRef]
     sections.forEach((sectionRef) => {
       if (sectionRef.current) {
         gsap.fromTo(sectionRef.current,
@@ -153,18 +173,23 @@ export default function Home() {
       {/* Navigation */}
       <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-black/[0.06]' : 'bg-white/80 backdrop-blur-sm'}`}>
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-          <span className="text-[#111827] font-bold tracking-tight text-base">King Osei</span>
+          <a href="#home" className="flex items-center gap-2.5">
+            <span className="w-8 h-8 rounded-lg bg-[#1B4FD8] flex items-center justify-center shadow-sm shadow-blue-200">
+              <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+            </span>
+            <span className="text-[#111827] font-bold tracking-tight text-base">King Osei</span>
+          </a>
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#home" className="text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">Home</a>
             <a href="#portfolio" className="text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">Portfolio</a>
             <a href="#features" className="text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">Services</a>
+            <a href="#process" className="text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">Process</a>
             <a href="#faq" className="text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">FAQ</a>
           </div>
 
           <a
-            href="https://twitter.com/messages/compose?recipient_id=1800031539557748736"
+            href={CTA_LINK}
             target="_blank"
             className="hidden md:inline-flex items-center gap-2 bg-[#1B4FD8] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[#1641B8] active:scale-[0.97] transition-all shadow-sm"
           >
@@ -192,13 +217,13 @@ export default function Home() {
         {/* Mobile dropdown */}
         {isMobileMenuOpen && (
           <div className="border-t border-black/[0.06] bg-white px-6 py-4 space-y-1">
-            <a href="#home" className="block py-2.5 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
             <a href="#portfolio" className="block py-2.5 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</a>
             <a href="#features" className="block py-2.5 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Services</a>
+            <a href="#process" className="block py-2.5 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Process</a>
             <a href="#faq" className="block py-2.5 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>FAQ</a>
             <div className="pt-3 border-t border-black/[0.06]">
               <a
-                href="https://twitter.com/messages/compose?recipient_id=1800031539557748736"
+                href={CTA_LINK}
                 target="_blank"
                 className="inline-flex items-center gap-2 bg-[#1B4FD8] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[#1641B8] transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -211,46 +236,55 @@ export default function Home() {
       </nav>
 
       {/* Hero */}
-      <section id="home" ref={heroRef} className="min-h-[100dvh] flex items-center pt-24 pb-20 relative overflow-hidden">
-        {/* Subtle background pattern */}
+      <section id="home" ref={heroRef} className="min-h-[100dvh] flex items-center pt-28 pb-20 relative overflow-hidden">
+        {/* Background: soft blobs + dotted grid */}
+        <div className="absolute inset-0 bg-grid pointer-events-none" />
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#EFF6FF] rounded-full translate-x-1/2 -translate-y-1/3 opacity-60" />
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#EFF6FF] rounded-full -translate-x-1/3 translate-y-1/4 opacity-40" />
         </div>
         <div className="container mx-auto px-6 max-w-6xl relative">
           <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
-            <span className="inline-flex items-center gap-2 bg-[#EFF6FF] text-[#1B4FD8] text-xs font-semibold px-3 py-1.5 rounded-full mb-8 uppercase tracking-widest">
-              Video Editor
+            <span className="inline-flex items-center gap-2.5 bg-white text-[#111827] text-xs font-semibold px-4 py-2 rounded-full mb-8 border border-black/[0.06] shadow-sm">
+              <span className="relative inline-flex w-2 h-2 rounded-full bg-[#10B981] text-[#10B981] pulse-ring" />
+              Available for new projects
             </span>
-            <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight text-[#111827] mb-6">
-              Stand out in your <span className="text-[#1B4FD8]">niche.</span>
+            <h1 className="text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight text-[#111827] mb-6">
+              Edits that make your brand <span className="text-gradient">impossible to scroll past.</span>
             </h1>
-            <p className="text-xl text-[#6B7280] max-w-md mb-10 leading-relaxed">
-              Grow your brand with editing that works. Professional videos that captivate and convert.
+            <p className="text-xl text-[#6B7280] max-w-xl mb-9 leading-relaxed">
+              I help creators and founders grow with retention-first video editing — hooks that grab in 3 seconds, pacing that holds attention, and stories that convert viewers into clients.
             </p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
-              <a
-                href="https://twitter.com/messages/compose?recipient_id=1800031539557748736"
-                target="_blank"
-              >
-                <button className="inline-flex items-center gap-3 bg-[#1B4FD8] text-white px-7 py-4 rounded-lg font-semibold hover:bg-[#1641B8] active:scale-[0.97] transition-all text-base shadow-md shadow-blue-200">
+              <a href={CTA_LINK} target="_blank">
+                <button className="inline-flex items-center gap-3 bg-[#1B4FD8] text-white px-7 py-4 rounded-lg font-semibold hover:bg-[#1641B8] active:scale-[0.97] transition-all text-base shadow-lg shadow-blue-300/50">
                   Work with me
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </button>
               </a>
-              <a href="#portfolio" className="inline-flex items-center gap-2 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">
-                View portfolio
+              <a href="#portfolio" className="inline-flex items-center gap-2 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-semibold">
+                Watch the work
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </a>
             </div>
 
+            {/* Trust microcopy */}
+            <div className="mt-6 flex items-center justify-center gap-x-5 gap-y-2 flex-wrap text-sm text-[#6B7280]">
+              {["Replies within 24h", "Unlimited revisions", "50+ videos delivered"].map((item, i) => (
+                <span key={i} className="inline-flex items-center gap-1.5">
+                  <svg className="w-4 h-4 text-[#1B4FD8]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  {item}
+                </span>
+              ))}
+            </div>
+
             {/* Recent VSL video */}
             <div className="mt-14 w-full max-w-4xl">
-              <div className="aspect-video rounded-2xl overflow-hidden border border-black/[0.08] shadow-lg bg-black">
+              <div className="aspect-video rounded-2xl overflow-hidden border border-black/[0.08] hero-glow bg-black">
                 <iframe
                   src="https://player.vimeo.com/video/1197611523?title=0&byline=0&portrait=0"
                   title="Recent VSL"
@@ -259,7 +293,10 @@ export default function Home() {
                   allowFullScreen
                 />
               </div>
-              <p className="mt-3 text-[#1B4FD8] font-semibold text-base">video VSL recente</p>
+              <p className="mt-4 inline-flex items-center gap-2 text-[#1B4FD8] font-semibold text-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#1B4FD8]" />
+                Recent VSL edit
+              </p>
             </div>
           </div>
         </div>
@@ -267,11 +304,11 @@ export default function Home() {
 
       {/* Stats */}
       <section ref={statsRef} className="py-16 bg-white border-y border-black/[0.06]">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-black/[0.06]">
             {stats.map((stat, i) => (
-              <div key={i} className="text-center">
-                <p className="text-4xl md:text-5xl font-bold text-[#1B4FD8] mb-2">{stat.value}</p>
+              <div key={i} className="text-center px-4 py-6 md:py-2">
+                <p className="text-4xl md:text-5xl font-bold text-[#1B4FD8] mb-2 tracking-tight">{stat.value}</p>
                 <p className="text-sm text-[#6B7280] font-medium">{stat.label}</p>
               </div>
             ))}
@@ -283,14 +320,14 @@ export default function Home() {
       <section ref={clientsRef} className="py-20">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="text-center mb-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#6B7280] mb-3">Trusted by creators</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#111827]">Worked with</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#6B7280] mb-3">Trusted by creators &amp; founders</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#111827]">Brands I&apos;ve worked with</h2>
           </div>
           <div className="marquee-mask overflow-hidden">
             <div ref={clientsTrackRef} className="flex w-max">
               {[...clients, ...clients].map((client, index) => (
                 <div key={index} className="text-center group shrink-0 w-28 md:w-32 px-2">
-                  <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 rounded-2xl overflow-hidden bg-white border border-black/[0.08] shadow-sm group-hover:shadow-md group-hover:border-[#1B4FD8]/20 transition-all duration-300">
+                  <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 rounded-2xl overflow-hidden bg-white border border-black/[0.08] shadow-sm group-hover:shadow-md group-hover:-translate-y-1 group-hover:border-[#1B4FD8]/30 transition-all duration-300">
                     <img
                       src={client.image}
                       alt={client.name}
@@ -311,15 +348,15 @@ export default function Home() {
       <section id="portfolio" ref={longFormRef} className="py-24 bg-white border-y border-black/[0.06]">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="mb-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1B4FD8] mb-3">Portfolio</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Long Form Videos</h2>
-            <p className="text-[#6B7280] mt-2 text-lg">Engaging content that keeps your audience watching</p>
+            <Eyebrow>Portfolio</Eyebrow>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Long form that holds attention</h2>
+            <p className="text-[#6B7280] mt-2 text-lg">Story-driven edits that keep your audience watching to the end.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {longFormVideos.map((video, index) => (
               <div
                 key={index}
-                className="bg-[#F9FAFB] rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:border-[#1B4FD8]/20 transition-all duration-300"
+                className="bg-[#F9FAFB] rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:-translate-y-1 hover:border-[#1B4FD8]/20 transition-all duration-300"
               >
                 <div className="aspect-video">
                   <YouTubeEmbed
@@ -338,15 +375,15 @@ export default function Home() {
       <section ref={shortFormRef} className="py-24">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="mb-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1B4FD8] mb-3">Short Form</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Short Form Videos</h2>
-            <p className="text-[#6B7280] mt-2 text-lg">Vertical content built for social growth</p>
+            <Eyebrow>Short Form</Eyebrow>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Reels built to go viral</h2>
+            <p className="text-[#6B7280] mt-2 text-lg">Vertical content engineered for reach, saves and follows.</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl">
             {shortFormVideos.map((video, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:border-[#1B4FD8]/20 transition-all duration-300"
+                className="bg-white rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:-translate-y-1 hover:border-[#1B4FD8]/20 transition-all duration-300"
               >
                 <div className="aspect-[9/16]">
                   {'instagramId' in video ? (
@@ -373,15 +410,15 @@ export default function Home() {
       <section id="features" ref={featuresRef} className="py-24 bg-white border-y border-black/[0.06]">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="mb-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1B4FD8] mb-3">Services</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">What I offer</h2>
-            <p className="text-[#6B7280] mt-2 text-lg">Everything you need for professional video content</p>
+            <Eyebrow>Services</Eyebrow>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Everything done for you</h2>
+            <p className="text-[#6B7280] mt-2 text-lg">A complete editing service, so you can stay focused on creating.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-[#FAFAF8] rounded-2xl p-6 border border-black/[0.06] hover:shadow-md hover:border-[#1B4FD8]/20 transition-all duration-300 group"
+                className="bg-[#FAFAF8] rounded-2xl p-6 border border-black/[0.06] hover:shadow-md hover:-translate-y-1 hover:border-[#1B4FD8]/20 transition-all duration-300 group"
               >
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-[#EFF6FF] text-[#1B4FD8] flex items-center justify-center flex-shrink-0 group-hover:bg-[#1B4FD8] group-hover:text-white transition-all duration-300">
@@ -403,25 +440,54 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Process */}
+      <section id="process" ref={processRef} className="py-24">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="mb-16">
+            <Eyebrow>Process</Eyebrow>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">From brief to final cut in 3 steps</h2>
+            <p className="text-[#6B7280] mt-2 text-lg">A simple, no-stress workflow built around your time.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {process.map((item, index) => (
+              <div
+                key={index}
+                className="relative bg-white rounded-2xl p-7 border border-black/[0.06] hover:shadow-md hover:-translate-y-1 hover:border-[#1B4FD8]/20 transition-all duration-300"
+              >
+                <span className="text-5xl font-bold text-[#EFF6FF] absolute top-5 right-6 select-none">{item.step}</span>
+                <div className="relative">
+                  <div className="w-11 h-11 rounded-xl bg-[#1B4FD8] text-white font-bold flex items-center justify-center mb-5 shadow-sm shadow-blue-200">
+                    {index + 1}
+                  </div>
+                  <h3 className="font-semibold text-[#111827] text-lg mb-2">{item.title}</h3>
+                  <p className="text-[#6B7280] text-sm leading-relaxed">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
-      <section ref={testimonialsRef} className="py-24">
+      <section ref={testimonialsRef} className="py-24 bg-white border-y border-black/[0.06]">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="mb-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1B4FD8] mb-3">Social proof</p>
+            <Eyebrow>Social proof</Eyebrow>
             <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">What clients say</h2>
+            <p className="text-[#6B7280] mt-2 text-lg">Real messages from creators and brands I&apos;ve worked with.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:border-[#1B4FD8]/20 transition-all duration-300 bg-white"
+                className="rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:-translate-y-1 hover:border-[#1B4FD8]/20 transition-all duration-300 bg-[#FAFAF8]"
               >
                 <img
                   src={testimonial.screenshot}
                   alt={`${testimonial.platform} testimonial`}
                   className="w-full h-full object-contain"
                 />
-                <div className="px-4 py-3 border-t border-black/[0.06] bg-[#FAFAF8]">
+                <div className="px-4 py-3 border-t border-black/[0.06]">
                   <p className="text-xs font-semibold text-[#9CA3AF] uppercase tracking-[0.1em]">
                     {testimonial.description}
                   </p>
@@ -433,10 +499,10 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" ref={faqRef} className="py-24 bg-white border-y border-black/[0.06]">
+      <section id="faq" ref={faqRef} className="py-24">
         <div className="container mx-auto px-6 max-w-3xl">
           <div className="mb-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1B4FD8] mb-3">FAQ</p>
+            <Eyebrow>FAQ</Eyebrow>
             <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Frequently asked</h2>
           </div>
           <div className="divide-y divide-black/[0.06]">
@@ -470,23 +536,21 @@ export default function Home() {
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full translate-x-1/3 -translate-y-1/3" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full -translate-x-1/4 translate-y-1/4" />
         </div>
-        <div className="container mx-auto px-6 max-w-6xl relative">
+        <div className="container mx-auto px-6 max-w-6xl relative text-center flex flex-col items-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-200 mb-6">Get in touch</p>
           <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 max-w-2xl leading-[1.05]">
-            Ready to grow your audience?
+            Let&apos;s make your next video your best one.
           </h2>
-          <p className="text-blue-200 text-lg mb-10 max-w-md">Let's create content that stands out and converts viewers into fans.</p>
-          <a
-            href="https://twitter.com/messages/compose?recipient_id=1800031539557748736"
-            target="_blank"
-          >
+          <p className="text-blue-100 text-lg mb-10 max-w-md">Tell me about your project — I&apos;ll show you exactly how I can help you grow.</p>
+          <a href={CTA_LINK} target="_blank">
             <button className="inline-flex items-center gap-3 bg-white text-[#1B4FD8] px-7 py-4 rounded-lg font-bold hover:bg-blue-50 active:scale-[0.97] transition-all text-base shadow-lg">
-              Let's work together
+              Work with me
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </button>
           </a>
+          <p className="mt-5 text-sm text-blue-200">No commitment · Reply within 24h</p>
         </div>
       </section>
 

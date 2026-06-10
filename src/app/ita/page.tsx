@@ -12,6 +12,8 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
+const CTA_LINK = "https://calendly.com/kingsarfo/chiamata-conoscitiva"
+
 const featureIcons = [
   <svg key="refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M1 4v6h6M23 20v-6h-6" />
@@ -41,6 +43,17 @@ const featureIcons = [
   </svg>,
 ]
 
+function Eyebrow({ children, tone = "primary" }: { children: React.ReactNode; tone?: "primary" | "muted" }) {
+  const color = tone === "primary" ? "text-[#1B4FD8]" : "text-[#6B7280]"
+  const line = tone === "primary" ? "bg-[#1B4FD8]" : "bg-[#9CA3AF]"
+  return (
+    <p className={`flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] ${color} mb-3`}>
+      <span className={`h-px w-6 ${line}`} />
+      {children}
+    </p>
+  )
+}
+
 export default function HomeIT() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
@@ -53,6 +66,7 @@ export default function HomeIT() {
   const longFormRef = useRef<HTMLDivElement>(null)
   const shortFormRef = useRef<HTMLDivElement>(null)
   const featuresRef = useRef<HTMLDivElement>(null)
+  const processRef = useRef<HTMLDivElement>(null)
   const testimonialsRef = useRef<HTMLDivElement>(null)
   const faqRef = useRef<HTMLDivElement>(null)
 
@@ -61,19 +75,25 @@ export default function HomeIT() {
   const shortFormVideos = portfolioData.shortFormVideosIT
 
   const features = [
-    { title: "Revisioni Illimitate", description: "Lavoriamo insieme finché non sei soddisfatto al 100% del risultato" },
-    { title: "Focus su Hook", description: "Primi 3 secondi ottimizzati per catturare l'attenzione e aumentare la retention" },
-    { title: "Storyboard Personalizzato", description: "Creato su misura per l'avatar del tuo brand e la strategia dei contenuti" },
-    { title: "Supporto Diretto", description: "Comunicazione WhatsApp/Telegram per risposte rapide" },
-    { title: "Consegna Veloce", description: "Long form: 2–7 giorni · Reels: 3h–1 giorno in base alla complessità" },
-    { title: "Strumenti Pro", description: "Premiere Pro, After Effects, DaVinci Resolve" }
+    { title: "Revisioni Illimitate", description: "Affiniamo il montaggio insieme finché non sei soddisfatto al 100% — senza costi extra, senza limiti." },
+    { title: "Editing Hook-First", description: "I primi 3 secondi sono studiati per fermare lo scroll e alzare la tua retention." },
+    { title: "Storyboard su Misura", description: "Ogni taglio è costruito attorno al tuo brand, al tuo avatar e alla tua strategia di contenuti." },
+    { title: "Supporto Diretto", description: "Parli direttamente con me su WhatsApp o Telegram — risposte rapide, zero intermediari." },
+    { title: "Consegna Veloce", description: "Long form in 2–7 giorni · Reels da 3h a 1 giorno, in base alla complessità." },
+    { title: "Strumenti Pro", description: "Premiere Pro, After Effects e DaVinci Resolve — finishing di livello broadcast." }
   ]
 
   const stats = [
-    { value: "50+", label: "Video Consegnati" },
-    { value: "8", label: "Clienti Serviti" },
-    { value: "3h", label: "Consegna più Rapida" },
-    { value: "100%", label: "Tasso di Soddisfazione" }
+    { value: "50+", label: "Video consegnati" },
+    { value: "8", label: "Brand serviti" },
+    { value: "3h", label: "Consegna più rapida" },
+    { value: "100%", label: "Tasso di soddisfazione" }
+  ]
+
+  const process = [
+    { step: "01", title: "Mandami il brief", description: "Condividi footage, reference e obiettivi via Drive o SwissTransfer. Allineiamo la visione prima di tagliare." },
+    { step: "02", title: "Edito io", description: "Hook, ritmo, motion graphics e color — costruiti attorno al tuo brand e al pubblico che vuoi raggiungere." },
+    { step: "03", title: "Revisione e lancio", description: "Revisioni illimitate su Frame.io finché non è perfetto. Ricevi i file finali pronti da pubblicare." }
   ]
 
   const faqs = [
@@ -105,7 +125,7 @@ export default function HomeIT() {
       )
     }
 
-    const sections = [statsRef, clientsRef, longFormRef, shortFormRef, featuresRef, testimonialsRef, faqRef]
+    const sections = [statsRef, clientsRef, longFormRef, shortFormRef, featuresRef, processRef, testimonialsRef, faqRef]
     sections.forEach((sectionRef) => {
       if (sectionRef.current) {
         gsap.fromTo(sectionRef.current,
@@ -153,18 +173,23 @@ export default function HomeIT() {
       {/* Navigation */}
       <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-black/[0.06]' : 'bg-white/80 backdrop-blur-sm'}`}>
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-          <span className="text-[#111827] font-bold tracking-tight text-base">King Osei</span>
+          <a href="#home" className="flex items-center gap-2.5">
+            <span className="w-8 h-8 rounded-lg bg-[#1B4FD8] flex items-center justify-center shadow-sm shadow-blue-200">
+              <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+            </span>
+            <span className="text-[#111827] font-bold tracking-tight text-base">King Osei</span>
+          </a>
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#home" className="text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">Home</a>
             <a href="#portfolio" className="text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">Portfolio</a>
             <a href="#features" className="text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">Servizi</a>
+            <a href="#process" className="text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">Processo</a>
             <a href="#faq" className="text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">FAQ</a>
           </div>
 
           <a
-            href="https://calendly.com/kingsarfo/chiamata-conoscitiva"
+            href={CTA_LINK}
             target="_blank"
             className="hidden md:inline-flex items-center gap-2 bg-[#1B4FD8] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[#1641B8] active:scale-[0.97] transition-all shadow-sm"
           >
@@ -192,13 +217,13 @@ export default function HomeIT() {
         {/* Mobile dropdown */}
         {isMobileMenuOpen && (
           <div className="border-t border-black/[0.06] bg-white px-6 py-4 space-y-1">
-            <a href="#home" className="block py-2.5 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
             <a href="#portfolio" className="block py-2.5 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</a>
             <a href="#features" className="block py-2.5 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Servizi</a>
+            <a href="#process" className="block py-2.5 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Processo</a>
             <a href="#faq" className="block py-2.5 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>FAQ</a>
             <div className="pt-3 border-t border-black/[0.06]">
               <a
-                href="https://calendly.com/kingsarfo/chiamata-conoscitiva"
+                href={CTA_LINK}
                 target="_blank"
                 className="inline-flex items-center gap-2 bg-[#1B4FD8] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[#1641B8] transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -211,45 +236,55 @@ export default function HomeIT() {
       </nav>
 
       {/* Hero */}
-      <section id="home" ref={heroRef} className="min-h-[100dvh] flex items-center pt-24 pb-20 relative overflow-hidden">
+      <section id="home" ref={heroRef} className="min-h-[100dvh] flex items-center pt-28 pb-20 relative overflow-hidden">
+        {/* Sfondo: blob morbidi + griglia a puntini */}
+        <div className="absolute inset-0 bg-grid pointer-events-none" />
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#EFF6FF] rounded-full translate-x-1/2 -translate-y-1/3 opacity-60" />
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#EFF6FF] rounded-full -translate-x-1/3 translate-y-1/4 opacity-40" />
         </div>
         <div className="container mx-auto px-6 max-w-6xl relative">
           <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
-            <span className="inline-flex items-center gap-2 bg-[#EFF6FF] text-[#1B4FD8] text-xs font-semibold px-3 py-1.5 rounded-full mb-8 uppercase tracking-widest">
-              Video Editor
+            <span className="inline-flex items-center gap-2.5 bg-white text-[#111827] text-xs font-semibold px-4 py-2 rounded-full mb-8 border border-black/[0.06] shadow-sm">
+              <span className="relative inline-flex w-2 h-2 rounded-full bg-[#10B981] text-[#10B981] pulse-ring" />
+              Disponibile per nuovi progetti
             </span>
-            <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight text-[#111827] mb-6">
-              Distinguiti nella tua <span className="text-[#1B4FD8]">nicchia.</span>
+            <h1 className="text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight text-[#111827] mb-6">
+              Montaggi che rendono il tuo brand <span className="text-gradient">impossibile da scrollare.</span>
             </h1>
-            <p className="text-xl text-[#6B7280] max-w-md mb-10 leading-relaxed">
-              Fai crescere il tuo brand con un editing che funziona. Video professionali che catturano e convertono.
+            <p className="text-xl text-[#6B7280] max-w-xl mb-9 leading-relaxed">
+              Aiuto creator e founder a crescere con un editing pensato per la retention — hook che catturano in 3 secondi, ritmo che trattiene e storie che trasformano i viewer in clienti.
             </p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
-              <a
-                href="https://calendly.com/kingsarfo/chiamata-conoscitiva"
-                target="_blank"
-              >
-                <button className="inline-flex items-center gap-3 bg-[#1B4FD8] text-white px-7 py-4 rounded-lg font-semibold hover:bg-[#1641B8] active:scale-[0.97] transition-all text-base shadow-md shadow-blue-200">
+              <a href={CTA_LINK} target="_blank">
+                <button className="inline-flex items-center gap-3 bg-[#1B4FD8] text-white px-7 py-4 rounded-lg font-semibold hover:bg-[#1641B8] active:scale-[0.97] transition-all text-base shadow-lg shadow-blue-300/50">
                   Lavoriamo insieme
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </button>
               </a>
-              <a href="#portfolio" className="inline-flex items-center gap-2 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-medium">
-                Vedi il portfolio
+              <a href="#portfolio" className="inline-flex items-center gap-2 text-[#6B7280] hover:text-[#111827] transition-colors text-sm font-semibold">
+                Guarda i lavori
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </a>
             </div>
 
+            {/* Microcopy di trust */}
+            <div className="mt-6 flex items-center justify-center gap-x-5 gap-y-2 flex-wrap text-sm text-[#6B7280]">
+              {["Risposta entro 24h", "Revisioni illimitate", "50+ video consegnati"].map((item, i) => (
+                <span key={i} className="inline-flex items-center gap-1.5">
+                  <svg className="w-4 h-4 text-[#1B4FD8]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  {item}
+                </span>
+              ))}
+            </div>
+
             {/* Video VSL recente */}
             <div className="mt-14 w-full max-w-4xl">
-              <div className="aspect-video rounded-2xl overflow-hidden border border-black/[0.08] shadow-lg bg-black">
+              <div className="aspect-video rounded-2xl overflow-hidden border border-black/[0.08] hero-glow bg-black">
                 <iframe
                   src="https://player.vimeo.com/video/1197611523?title=0&byline=0&portrait=0"
                   title="VSL recente"
@@ -258,7 +293,10 @@ export default function HomeIT() {
                   allowFullScreen
                 />
               </div>
-              <p className="mt-3 text-[#1B4FD8] font-semibold text-base">video VSL recente</p>
+              <p className="mt-4 inline-flex items-center gap-2 text-[#1B4FD8] font-semibold text-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#1B4FD8]" />
+                Edit VSL recente
+              </p>
             </div>
           </div>
         </div>
@@ -266,11 +304,11 @@ export default function HomeIT() {
 
       {/* Stats */}
       <section ref={statsRef} className="py-16 bg-white border-y border-black/[0.06]">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-black/[0.06]">
             {stats.map((stat, i) => (
-              <div key={i} className="text-center">
-                <p className="text-4xl md:text-5xl font-bold text-[#1B4FD8] mb-2">{stat.value}</p>
+              <div key={i} className="text-center px-4 py-6 md:py-2">
+                <p className="text-4xl md:text-5xl font-bold text-[#1B4FD8] mb-2 tracking-tight">{stat.value}</p>
                 <p className="text-sm text-[#6B7280] font-medium">{stat.label}</p>
               </div>
             ))}
@@ -282,14 +320,14 @@ export default function HomeIT() {
       <section ref={clientsRef} className="py-20">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="text-center mb-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#6B7280] mb-3">Fidato dai creator</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#111827]">Lavorato con</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#6B7280] mb-3">Scelto da creator e founder</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#111827]">Brand con cui ho lavorato</h2>
           </div>
           <div className="marquee-mask overflow-hidden">
             <div ref={clientsTrackRef} className="flex w-max">
               {[...clients, ...clients].map((client, index) => (
                 <div key={index} className="text-center group shrink-0 w-28 md:w-32 px-2">
-                  <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 rounded-2xl overflow-hidden bg-white border border-black/[0.08] shadow-sm group-hover:shadow-md group-hover:border-[#1B4FD8]/20 transition-all duration-300">
+                  <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 rounded-2xl overflow-hidden bg-white border border-black/[0.08] shadow-sm group-hover:shadow-md group-hover:-translate-y-1 group-hover:border-[#1B4FD8]/30 transition-all duration-300">
                     <img
                       src={client.image}
                       alt={client.name}
@@ -310,15 +348,15 @@ export default function HomeIT() {
       <section id="portfolio" ref={longFormRef} className="py-24 bg-white border-y border-black/[0.06]">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="mb-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1B4FD8] mb-3">Portfolio</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Long Form Videos</h2>
-            <p className="text-[#6B7280] mt-2 text-lg">Contenuti coinvolgenti che mantengono l'attenzione del tuo pubblico</p>
+            <Eyebrow>Portfolio</Eyebrow>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Long form che trattiene l&apos;attenzione</h2>
+            <p className="text-[#6B7280] mt-2 text-lg">Edit story-driven che tengono il pubblico incollato fino alla fine.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {longFormVideos.map((video, index) => (
               <div
                 key={index}
-                className="bg-[#F9FAFB] rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:border-[#1B4FD8]/20 transition-all duration-300"
+                className="bg-[#F9FAFB] rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:-translate-y-1 hover:border-[#1B4FD8]/20 transition-all duration-300"
               >
                 <div className="aspect-video">
                   <YouTubeEmbed
@@ -337,15 +375,15 @@ export default function HomeIT() {
       <section ref={shortFormRef} className="py-24">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="mb-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1B4FD8] mb-3">Short Form</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Short Form Videos</h2>
-            <p className="text-[#6B7280] mt-2 text-lg">Contenuti verticali per la crescita sui social</p>
+            <Eyebrow>Short Form</Eyebrow>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Reels costruiti per diventare virali</h2>
+            <p className="text-[#6B7280] mt-2 text-lg">Contenuti verticali pensati per reach, salvataggi e follow.</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl">
             {shortFormVideos.map((video, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:border-[#1B4FD8]/20 transition-all duration-300"
+                className="bg-white rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:-translate-y-1 hover:border-[#1B4FD8]/20 transition-all duration-300"
               >
                 <div className="aspect-[9/16]">
                   {'instagramId' in video ? (
@@ -372,15 +410,15 @@ export default function HomeIT() {
       <section id="features" ref={featuresRef} className="py-24 bg-white border-y border-black/[0.06]">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="mb-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1B4FD8] mb-3">Servizi</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Cosa offro</h2>
-            <p className="text-[#6B7280] mt-2 text-lg">Tutto ciò di cui hai bisogno per contenuti video professionali</p>
+            <Eyebrow>Servizi</Eyebrow>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Tutto fatto per te</h2>
+            <p className="text-[#6B7280] mt-2 text-lg">Un servizio di editing completo, così tu resti concentrato a creare.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-[#FAFAF8] rounded-2xl p-6 border border-black/[0.06] hover:shadow-md hover:border-[#1B4FD8]/20 transition-all duration-300 group"
+                className="bg-[#FAFAF8] rounded-2xl p-6 border border-black/[0.06] hover:shadow-md hover:-translate-y-1 hover:border-[#1B4FD8]/20 transition-all duration-300 group"
               >
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-[#EFF6FF] text-[#1B4FD8] flex items-center justify-center flex-shrink-0 group-hover:bg-[#1B4FD8] group-hover:text-white transition-all duration-300">
@@ -402,25 +440,54 @@ export default function HomeIT() {
         </div>
       </section>
 
+      {/* Process */}
+      <section id="process" ref={processRef} className="py-24">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="mb-16">
+            <Eyebrow>Processo</Eyebrow>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Dal brief al cut finale in 3 step</h2>
+            <p className="text-[#6B7280] mt-2 text-lg">Un workflow semplice e senza stress, costruito attorno al tuo tempo.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {process.map((item, index) => (
+              <div
+                key={index}
+                className="relative bg-white rounded-2xl p-7 border border-black/[0.06] hover:shadow-md hover:-translate-y-1 hover:border-[#1B4FD8]/20 transition-all duration-300"
+              >
+                <span className="text-5xl font-bold text-[#EFF6FF] absolute top-5 right-6 select-none">{item.step}</span>
+                <div className="relative">
+                  <div className="w-11 h-11 rounded-xl bg-[#1B4FD8] text-white font-bold flex items-center justify-center mb-5 shadow-sm shadow-blue-200">
+                    {index + 1}
+                  </div>
+                  <h3 className="font-semibold text-[#111827] text-lg mb-2">{item.title}</h3>
+                  <p className="text-[#6B7280] text-sm leading-relaxed">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
-      <section ref={testimonialsRef} className="py-24">
+      <section ref={testimonialsRef} className="py-24 bg-white border-y border-black/[0.06]">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="mb-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1B4FD8] mb-3">Feedback</p>
+            <Eyebrow>Feedback</Eyebrow>
             <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Cosa dicono i clienti</h2>
+            <p className="text-[#6B7280] mt-2 text-lg">Messaggi reali da creator e brand con cui ho lavorato.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:border-[#1B4FD8]/20 transition-all duration-300 bg-white"
+                className="rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:-translate-y-1 hover:border-[#1B4FD8]/20 transition-all duration-300 bg-[#FAFAF8]"
               >
                 <img
                   src={testimonial.screenshot}
                   alt={`Testimonial ${testimonial.platform}`}
                   className="w-full h-full object-contain"
                 />
-                <div className="px-4 py-3 border-t border-black/[0.06] bg-[#FAFAF8]">
+                <div className="px-4 py-3 border-t border-black/[0.06]">
                   <p className="text-xs font-semibold text-[#9CA3AF] uppercase tracking-[0.1em]">
                     {testimonial.description}
                   </p>
@@ -432,10 +499,10 @@ export default function HomeIT() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" ref={faqRef} className="py-24 bg-white border-y border-black/[0.06]">
+      <section id="faq" ref={faqRef} className="py-24">
         <div className="container mx-auto px-6 max-w-3xl">
           <div className="mb-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1B4FD8] mb-3">FAQ</p>
+            <Eyebrow>FAQ</Eyebrow>
             <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Domande frequenti</h2>
           </div>
           <div className="divide-y divide-black/[0.06]">
@@ -469,23 +536,21 @@ export default function HomeIT() {
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full translate-x-1/3 -translate-y-1/3" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full -translate-x-1/4 translate-y-1/4" />
         </div>
-        <div className="container mx-auto px-6 max-w-6xl relative">
+        <div className="container mx-auto px-6 max-w-6xl relative text-center flex flex-col items-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-200 mb-6">Contattami</p>
           <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 max-w-2xl leading-[1.05]">
-            Pronto a far crescere il tuo pubblico?
+            Rendiamo il tuo prossimo video il migliore di sempre.
           </h2>
-          <p className="text-blue-200 text-lg mb-10 max-w-md">Creiamo contenuti che si distinguono e convertono i viewer in fan.</p>
-          <a
-            href="https://calendly.com/kingsarfo/chiamata-conoscitiva"
-            target="_blank"
-          >
+          <p className="text-blue-100 text-lg mb-10 max-w-md">Raccontami il tuo progetto — ti mostro esattamente come posso aiutarti a crescere.</p>
+          <a href={CTA_LINK} target="_blank">
             <button className="inline-flex items-center gap-3 bg-white text-[#1B4FD8] px-7 py-4 rounded-lg font-bold hover:bg-blue-50 active:scale-[0.97] transition-all text-base shadow-lg">
-              Lavoriamo insieme
+              Prenota una call
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </button>
           </a>
+          <p className="mt-5 text-sm text-blue-200">Nessun impegno · Risposta entro 24h</p>
         </div>
       </section>
 
