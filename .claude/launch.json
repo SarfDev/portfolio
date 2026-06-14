@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "critter-realm",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8421", "--directory", "/Users/kingsarfoosei/Documents/coding/critter-realm"],
+      "port": 8421
+    },
+    {
+      "name": "portfolio-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8741", "--directory", "/Users/kingsarfoosei/Documents/coding/portfolio"],
+      "port": 8741
+    }
+  ]
+}

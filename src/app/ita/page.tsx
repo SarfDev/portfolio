@@ -44,8 +44,8 @@ const featureIcons = [
 ]
 
 function Eyebrow({ children, tone = "primary" }: { children: React.ReactNode; tone?: "primary" | "muted" }) {
-  const color = tone === "primary" ? "text-[#1B4FD8]" : "text-[#6B7280]"
-  const line = tone === "primary" ? "bg-[#1B4FD8]" : "bg-[#9CA3AF]"
+  const color = tone === "primary" ? "text-[#2A4F3C]" : "text-[#6B7280]"
+  const line = tone === "primary" ? "bg-[#2A4F3C]" : "bg-[#9CA3AF]"
   return (
     <p className={`flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] ${color} mb-3`}>
       <span className={`h-px w-6 ${line}`} />
@@ -174,7 +174,7 @@ export default function HomeIT() {
       <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-black/[0.06]' : 'bg-white/80 backdrop-blur-sm'}`}>
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
           <a href="#home" className="flex items-center gap-2.5">
-            <span className="w-8 h-8 rounded-lg bg-[#1B4FD8] flex items-center justify-center shadow-sm shadow-blue-200">
+            <span className="w-8 h-8 rounded-lg bg-[#2A4F3C] flex items-center justify-center shadow-sm shadow-emerald-200">
               <svg className="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
             </span>
             <span className="text-[#111827] font-bold tracking-tight text-base">King Osei</span>
@@ -191,7 +191,7 @@ export default function HomeIT() {
           <a
             href={CTA_LINK}
             target="_blank"
-            className="hidden md:inline-flex items-center gap-2 bg-[#1B4FD8] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[#1641B8] active:scale-[0.97] transition-all shadow-sm"
+            className="hidden md:inline-flex items-center gap-2 bg-[#2A4F3C] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[#1E3A2C] active:scale-[0.97] transition-all shadow-sm"
           >
             Lavoriamo insieme
           </a>
@@ -225,7 +225,7 @@ export default function HomeIT() {
               <a
                 href={CTA_LINK}
                 target="_blank"
-                className="inline-flex items-center gap-2 bg-[#1B4FD8] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[#1641B8] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#2A4F3C] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[#1E3A2C] transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Lavoriamo insieme
@@ -240,8 +240,8 @@ export default function HomeIT() {
         {/* Sfondo: blob morbidi + griglia a puntini */}
         <div className="absolute inset-0 bg-grid pointer-events-none" />
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#EFF6FF] rounded-full translate-x-1/2 -translate-y-1/3 opacity-60" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#EFF6FF] rounded-full -translate-x-1/3 translate-y-1/4 opacity-40" />
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#EAF3ED] rounded-full translate-x-1/2 -translate-y-1/3 opacity-60" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#EAF3ED] rounded-full -translate-x-1/3 translate-y-1/4 opacity-40" />
         </div>
         <div className="container mx-auto px-6 max-w-6xl relative">
           <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
@@ -257,7 +257,7 @@ export default function HomeIT() {
             </p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <a href={CTA_LINK} target="_blank">
-                <button className="inline-flex items-center gap-3 bg-[#1B4FD8] text-white px-7 py-4 rounded-lg font-semibold hover:bg-[#1641B8] active:scale-[0.97] transition-all text-base shadow-lg shadow-blue-300/50">
+                <button className="inline-flex items-center gap-3 bg-[#2A4F3C] text-white px-7 py-4 rounded-lg font-semibold hover:bg-[#1E3A2C] active:scale-[0.97] transition-all text-base shadow-lg shadow-emerald-800/50">
                   Lavoriamo insieme
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -276,7 +276,7 @@ export default function HomeIT() {
             <div className="mt-6 flex items-center justify-center gap-x-5 gap-y-2 flex-wrap text-sm text-[#6B7280]">
               {["Risposta entro 24h", "Revisioni illimitate", "50+ video consegnati"].map((item, i) => (
                 <span key={i} className="inline-flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-[#1B4FD8]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <svg className="w-4 h-4 text-[#2A4F3C]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                   {item}
                 </span>
               ))}
@@ -293,8 +293,8 @@ export default function HomeIT() {
                   allowFullScreen
                 />
               </div>
-              <p className="mt-4 inline-flex items-center gap-2 text-[#1B4FD8] font-semibold text-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#1B4FD8]" />
+              <p className="mt-4 inline-flex items-center gap-2 text-[#2A4F3C] font-semibold text-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#2A4F3C]" />
                 Edit VSL recente
               </p>
             </div>
@@ -308,7 +308,7 @@ export default function HomeIT() {
           <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-black/[0.06]">
             {stats.map((stat, i) => (
               <div key={i} className="text-center px-4 py-6 md:py-2">
-                <p className="text-4xl md:text-5xl font-bold text-[#1B4FD8] mb-2 tracking-tight">{stat.value}</p>
+                <p className="text-4xl md:text-5xl font-bold text-[#2A4F3C] mb-2 tracking-tight">{stat.value}</p>
                 <p className="text-sm text-[#6B7280] font-medium">{stat.label}</p>
               </div>
             ))}
@@ -327,7 +327,7 @@ export default function HomeIT() {
             <div ref={clientsTrackRef} className="flex w-max">
               {[...clients, ...clients].map((client, index) => (
                 <div key={index} className="text-center group shrink-0 w-28 md:w-32 px-2">
-                  <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 rounded-2xl overflow-hidden bg-white border border-black/[0.08] shadow-sm group-hover:shadow-md group-hover:-translate-y-1 group-hover:border-[#1B4FD8]/30 transition-all duration-300">
+                  <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 rounded-2xl overflow-hidden bg-white border border-black/[0.08] shadow-sm group-hover:shadow-md group-hover:-translate-y-1 group-hover:border-[#2A4F3C]/30 transition-all duration-300">
                     <img
                       src={client.image}
                       alt={client.name}
@@ -356,7 +356,7 @@ export default function HomeIT() {
             {longFormVideos.map((video, index) => (
               <div
                 key={index}
-                className="bg-[#F9FAFB] rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:-translate-y-1 hover:border-[#1B4FD8]/20 transition-all duration-300"
+                className="bg-[#F9FAFB] rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:-translate-y-1 hover:border-[#2A4F3C]/20 transition-all duration-300"
               >
                 <div className="aspect-video">
                   <YouTubeEmbed
@@ -383,7 +383,7 @@ export default function HomeIT() {
             {shortFormVideos.map((video, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:-translate-y-1 hover:border-[#1B4FD8]/20 transition-all duration-300"
+                className="bg-white rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:-translate-y-1 hover:border-[#2A4F3C]/20 transition-all duration-300"
               >
                 <div className="aspect-[9/16]">
                   {'instagramId' in video ? (
@@ -418,10 +418,10 @@ export default function HomeIT() {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-[#FAFAF8] rounded-2xl p-6 border border-black/[0.06] hover:shadow-md hover:-translate-y-1 hover:border-[#1B4FD8]/20 transition-all duration-300 group"
+                className="bg-[#FAFAF8] rounded-2xl p-6 border border-black/[0.06] hover:shadow-md hover:-translate-y-1 hover:border-[#2A4F3C]/20 transition-all duration-300 group"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#EFF6FF] text-[#1B4FD8] flex items-center justify-center flex-shrink-0 group-hover:bg-[#1B4FD8] group-hover:text-white transition-all duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-[#EAF3ED] text-[#2A4F3C] flex items-center justify-center flex-shrink-0 group-hover:bg-[#2A4F3C] group-hover:text-white transition-all duration-300">
                     <div className="w-5 h-5">
                       {featureIcons[index]}
                     </div>
@@ -452,11 +452,11 @@ export default function HomeIT() {
             {process.map((item, index) => (
               <div
                 key={index}
-                className="relative bg-white rounded-2xl p-7 border border-black/[0.06] hover:shadow-md hover:-translate-y-1 hover:border-[#1B4FD8]/20 transition-all duration-300"
+                className="relative bg-white rounded-2xl p-7 border border-black/[0.06] hover:shadow-md hover:-translate-y-1 hover:border-[#2A4F3C]/20 transition-all duration-300"
               >
-                <span className="text-5xl font-bold text-[#EFF6FF] absolute top-5 right-6 select-none">{item.step}</span>
+                <span className="text-5xl font-bold text-[#EAF3ED] absolute top-5 right-6 select-none">{item.step}</span>
                 <div className="relative">
-                  <div className="w-11 h-11 rounded-xl bg-[#1B4FD8] text-white font-bold flex items-center justify-center mb-5 shadow-sm shadow-blue-200">
+                  <div className="w-11 h-11 rounded-xl bg-[#2A4F3C] text-white font-bold flex items-center justify-center mb-5 shadow-sm shadow-emerald-200">
                     {index + 1}
                   </div>
                   <h3 className="font-semibold text-[#111827] text-lg mb-2">{item.title}</h3>
@@ -480,7 +480,7 @@ export default function HomeIT() {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:-translate-y-1 hover:border-[#1B4FD8]/20 transition-all duration-300 bg-[#FAFAF8]"
+                className="rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:-translate-y-1 hover:border-[#2A4F3C]/20 transition-all duration-300 bg-[#FAFAF8]"
               >
                 <img
                   src={testimonial.screenshot}
@@ -512,10 +512,10 @@ export default function HomeIT() {
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
                   className="w-full py-5 flex items-center justify-between text-left group"
                 >
-                  <span className="font-semibold text-[#111827] pr-8 leading-relaxed group-hover:text-[#1B4FD8] transition-colors">
+                  <span className="font-semibold text-[#111827] pr-8 leading-relaxed group-hover:text-[#2A4F3C] transition-colors">
                     {faq.question}
                   </span>
-                  <span className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 ${openFaq === index ? 'bg-[#1B4FD8] text-white' : 'bg-[#F3F4F6] text-[#6B7280]'}`}>
+                  <span className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 ${openFaq === index ? 'bg-[#2A4F3C] text-white' : 'bg-[#F3F4F6] text-[#6B7280]'}`}>
                     <svg className={`w-3.5 h-3.5 transition-transform duration-200 ${openFaq === index ? 'rotate-45' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
                     </svg>
@@ -531,26 +531,26 @@ export default function HomeIT() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 bg-[#1B4FD8] relative overflow-hidden">
+      <section className="py-32 bg-[#2A4F3C] relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full translate-x-1/3 -translate-y-1/3" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full -translate-x-1/4 translate-y-1/4" />
         </div>
         <div className="container mx-auto px-6 max-w-6xl relative text-center flex flex-col items-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-200 mb-6">Contattami</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200 mb-6">Contattami</p>
           <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 max-w-2xl leading-[1.05]">
             Rendiamo il tuo prossimo video il migliore di sempre.
           </h2>
-          <p className="text-blue-100 text-lg mb-10 max-w-md">Raccontami il tuo progetto — ti mostro esattamente come posso aiutarti a crescere.</p>
+          <p className="text-emerald-100 text-lg mb-10 max-w-md">Raccontami il tuo progetto — ti mostro esattamente come posso aiutarti a crescere.</p>
           <a href={CTA_LINK} target="_blank">
-            <button className="inline-flex items-center gap-3 bg-white text-[#1B4FD8] px-7 py-4 rounded-lg font-bold hover:bg-blue-50 active:scale-[0.97] transition-all text-base shadow-lg">
+            <button className="inline-flex items-center gap-3 bg-white text-[#2A4F3C] px-7 py-4 rounded-lg font-bold hover:bg-emerald-50 active:scale-[0.97] transition-all text-base shadow-lg">
               Prenota una call
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </button>
           </a>
-          <p className="mt-5 text-sm text-blue-200">Nessun impegno · Risposta entro 24h</p>
+          <p className="mt-5 text-sm text-emerald-200">Nessun impegno · Risposta entro 24h</p>
         </div>
       </section>
 

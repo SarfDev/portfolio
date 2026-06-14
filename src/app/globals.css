@@ -10,19 +10,19 @@
   --card-foreground: #111827;
   --popover: #FFFFFF;
   --popover-foreground: #111827;
-  --primary: #1B4FD8;
+  --primary: #2A4F3C;
   --primary-foreground: #FFFFFF;
   --secondary: #F3F4F6;
   --secondary-foreground: #111827;
   --muted: #F9FAFB;
   --muted-foreground: #6B7280;
-  --accent: #EFF6FF;
-  --accent-foreground: #1B4FD8;
+  --accent: #EAF3ED;
+  --accent-foreground: #2A4F3C;
   --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
   --border: rgba(0, 0, 0, 0.08);
   --input: #F3F4F6;
-  --ring: #1B4FD8;
+  --ring: #2A4F3C;
   --radius: 0.75rem;
 }
 
@@ -68,7 +68,7 @@
   }
 
   ::selection {
-    background: rgba(27, 79, 216, 0.15);
+    background: rgba(42, 79, 60, 0.15);
   }
 }
 
@@ -101,17 +101,17 @@
   mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }
 
-/* Subtle dotted grid for the hero — uses the brand blue at very low opacity */
+/* Subtle dotted grid for the hero — uses the brand green at very low opacity */
 .bg-grid {
-  background-image: radial-gradient(rgba(27, 79, 216, 0.06) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(42, 79, 60, 0.06) 1px, transparent 1px);
   background-size: 22px 22px;
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 35%, #000 40%, transparent 100%);
   mask-image: radial-gradient(ellipse 80% 60% at 50% 35%, #000 40%, transparent 100%);
 }
 
-/* Gradient ink for highlighted words — stays within the brand blue range */
+/* Gradient ink for highlighted words — stays within the brand green range */
 .text-gradient {
-  background: linear-gradient(135deg, #1B4FD8 0%, #4F7BE8 100%);
+  background: linear-gradient(135deg, #2A4F3C 0%, #357349 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -120,7 +120,7 @@
 
 /* Soft branded glow behind the hero video */
 .hero-glow {
-  box-shadow: 0 30px 80px -20px rgba(27, 79, 216, 0.35);
+  box-shadow: 0 30px 80px -20px rgba(42, 79, 60, 0.35);
 }
 
 /* Pulsing availability dot */
