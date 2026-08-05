@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import YouTubeEmbed from '@/components/YouTubeEmbed'
-import InstagramEmbed from '@/components/InstagramEmbed'
+import ShortCard from '@/components/ShortCard'
 import { horizontalLoop } from '@/lib/horizontalLoop'
 import portfolioData from '@/data/portfolio.json'
 
@@ -85,7 +85,7 @@ export default function HomeIT() {
 
   const stats = [
     { value: "50+", label: "Video consegnati" },
-    { value: "8", label: "Brand serviti" },
+    { value: "9", label: "Brand serviti" },
     { value: "3h", label: "Consegna più rapida" },
     { value: "100%", label: "Tasso di soddisfazione" }
   ]
@@ -372,35 +372,16 @@ export default function HomeIT() {
       </section>
 
       {/* Short Form Videos */}
-      <section ref={shortFormRef} className="py-24">
-        <div className="container mx-auto px-6 max-w-6xl">
+      <section id="shorts" ref={shortFormRef} className="py-24">
+        <div className="container mx-auto px-6 max-w-5xl">
           <div className="mb-12">
             <Eyebrow>Short Form</Eyebrow>
             <h2 className="text-3xl md:text-4xl font-bold text-[#111827] tracking-tight">Reels costruiti per diventare virali</h2>
             <p className="text-[#6B7280] mt-2 text-lg">Contenuti verticali pensati per reach, salvataggi e follow.</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {shortFormVideos.map((video, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl overflow-hidden border border-black/[0.06] hover:shadow-lg hover:-translate-y-1 hover:border-[#2A4F3C]/20 transition-all duration-300"
-              >
-                <div className="aspect-[9/16]">
-                  {'instagramId' in video ? (
-                    <InstagramEmbed
-                      reelId={video.instagramId!}
-                      title={video.title}
-                      className="w-full h-full"
-                    />
-                  ) : (
-                    <YouTubeEmbed
-                      videoId={video.youtubeId!}
-                      title={video.title}
-                      className="w-full h-full"
-                    />
-                  )}
-                </div>
-              </div>
+              <ShortCard key={index} video={video} />
             ))}
           </div>
         </div>

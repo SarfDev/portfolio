@@ -27,6 +27,14 @@
     {
       "name": "Host Viaggi",
       "image": "/clienti/hostViaggi.jpg"
+    },
+    {
+      "name": "Angelica",
+      "image": "/clienti/angelica.jpg"
+    },
+    {
+      "name": "Enzo Black",
+      "image": "/clienti/enzoblack.jpg"
     }
   ],
   "longFormVideosEN": [
@@ -67,6 +75,14 @@
   ],
   "shortFormVideosEN": [
     {
+      "title": "Brand Reel",
+      "vimeoId": "1215838038"
+    },
+    {
+      "title": "Creator Reel",
+      "vimeoId": "1215835117"
+    },
+    {
       "title": "Social Media Ad",
       "youtubeId": "Atr0pWXsEGg"
     },
@@ -75,15 +91,23 @@
       "instagramId": "DXzo-EppgBJ"
     },
     {
-      "title": "Instagram Reel",
+      "title": "YouTube Short",
       "youtubeId": "PvlpLH0dQP0"
     },
     {
-      "title": "YouTube Short",
+      "title": "Instagram Reel",
       "instagramId": "DU5aPdrApiA"
     }
   ],
   "shortFormVideosIT": [
+    {
+      "title": "Reel Brand",
+      "vimeoId": "1215838038"
+    },
+    {
+      "title": "Reel Creator",
+      "vimeoId": "1215835117"
+    },
     {
       "title": "Annuncio Social Media",
       "youtubeId": "Atr0pWXsEGg"
@@ -93,11 +117,11 @@
       "instagramId": "DXzo-EppgBJ"
     },
     {
-      "title": "Reel Instagram",
+      "title": "YouTube Short",
       "youtubeId": "PvlpLH0dQP0"
     },
     {
-      "title": "YouTube Short",
+      "title": "Reel Instagram",
       "instagramId": "DU5aPdrApiA"
     }
   ]
