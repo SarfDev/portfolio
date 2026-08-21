@@ -6,14 +6,12 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint src"
   },
   "dependencies": {
-    "@gsap/react": "^2.1.2",
     "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "gsap": "^3.14.2",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.539.0",
     "next": "^16.1.4",
@@ -30,7 +28,6 @@
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
     "tailwindcss": "^4",
-    "tw-animate-css": "^1.3.6",
     "typescript": "^5"
   }
 }

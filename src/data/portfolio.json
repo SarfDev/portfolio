@@ -1,58 +1,106 @@
 {
+  "heroVimeoId": "1197611523",
   "clients": [
     {
       "name": "Alessio Piacentini",
-      "image": "/clienti/alessio.jpg"
+      "image": "/clienti/alessio.jpg",
+      "url": ""
     },
     {
       "name": "Andrew Watt",
-      "image": "/clienti/ginger.jpg"
+      "image": "/clienti/ginger.jpg",
+      "url": ""
     },
     {
       "name": "Marco Cappelli",
-      "image": "/clienti/marco.jpg"
+      "image": "/clienti/marco.jpg",
+      "url": "https://www.youtube.com/@Marco._Cappelli"
     },
     {
       "name": "Andrea Giudice",
-      "image": "/clienti/andrea.jpg"
+      "image": "/clienti/andrea.jpg",
+      "url": ""
     },
     {
       "name": "Andrea Delle Foglie",
-      "image": "/clienti/andreaDelleFoglie.jpg"
+      "image": "/clienti/andreaDelleFoglie.jpg",
+      "url": ""
     },
     {
       "name": "Asian Consulting",
-      "image": "/clienti/asianConsulting.jpg"
+      "image": "/clienti/asianConsulting.jpg",
+      "url": ""
     },
     {
       "name": "Host Viaggi",
-      "image": "/clienti/hostViaggi.jpg"
+      "image": "/clienti/hostViaggi.jpg",
+      "url": "https://www.instagram.com/hostviaggi/"
     },
     {
       "name": "Angelica",
-      "image": "/clienti/angelica.jpg"
+      "image": "/clienti/angelica.jpg",
+      "url": "https://www.instagram.com/ange0d/"
     },
     {
       "name": "Enzo Black",
-      "image": "/clienti/enzoblack.jpg"
+      "image": "/clienti/enzoblack.jpg",
+      "url": "https://www.instagram.com/enzoblack/"
     }
   ],
   "longFormVideosEN": [
     {
-      "title": "Creating a website with AI has never been easier [Complete Tutorial]",
-      "youtubeId": "8i4lXshL6j0"
+      "youtubeId": "8i4lXshL6j0",
+      "vimeoId": "",
+      "heading": "Marco Cappelli",
+      "avatar": "/clienti/marco.jpg",
+      "meta": "26.1K subscribers",
+      "url": "https://www.youtube.com/@Marco._Cappelli",
+      "vertical": false
     },
     {
-      "title": "SAAS",
-      "youtubeId": "9cg36umXWTg"
+      "youtubeId": "",
+      "vimeoId": "1220128762",
+      "heading": "Enzo Black",
+      "avatar": "/clienti/enzoblack.jpg",
+      "meta": "@enzoblack",
+      "url": "https://www.instagram.com/enzoblack/",
+      "vertical": true
     },
     {
-      "title": "Corporate Training Series",
-      "youtubeId": "5iZDrW_1e0s"
+      "youtubeId": "5iZDrW_1e0s",
+      "vimeoId": "",
+      "heading": "VSL",
+      "avatar": "",
+      "meta": "",
+      "url": "",
+      "vertical": false
     },
     {
-      "title": "Product Launch Event",
-      "youtubeId": "ApciVawE5Og"
+      "youtubeId": "ApciVawE5Og",
+      "vimeoId": "",
+      "heading": "VSL",
+      "avatar": "",
+      "meta": "",
+      "url": "",
+      "vertical": false
+    },
+    {
+      "youtubeId": "",
+      "vimeoId": "1220128763",
+      "heading": "Angelica",
+      "avatar": "/clienti/angelica.jpg",
+      "meta": "@ange0d",
+      "url": "https://www.instagram.com/ange0d/",
+      "vertical": true
+    },
+    {
+      "youtubeId": "",
+      "vimeoId": "1220128761",
+      "heading": "Host Viaggi",
+      "avatar": "/clienti/hostViaggi.jpg",
+      "meta": "@hostviaggi · 202K views",
+      "url": "https://www.instagram.com/hostviaggi/",
+      "vertical": true
     }
   ],
   "longFormVideosIT": [
@@ -71,58 +119,6 @@
     {
       "title": "Evento di Lancio Prodotto",
       "youtubeId": "ApciVawE5Og"
-    }
-  ],
-  "shortFormVideosEN": [
-    {
-      "title": "Brand Reel",
-      "vimeoId": "1215838038"
-    },
-    {
-      "title": "Creator Reel",
-      "vimeoId": "1215835117"
-    },
-    {
-      "title": "Social Media Ad",
-      "youtubeId": "Atr0pWXsEGg"
-    },
-    {
-      "title": "TikTok Trend",
-      "instagramId": "DXzo-EppgBJ"
-    },
-    {
-      "title": "YouTube Short",
-      "youtubeId": "PvlpLH0dQP0"
-    },
-    {
-      "title": "Instagram Reel",
-      "instagramId": "DU5aPdrApiA"
-    }
-  ],
-  "shortFormVideosIT": [
-    {
-      "title": "Reel Brand",
-      "vimeoId": "1215838038"
-    },
-    {
-      "title": "Reel Creator",
-      "vimeoId": "1215835117"
-    },
-    {
-      "title": "Annuncio Social Media",
-      "youtubeId": "Atr0pWXsEGg"
-    },
-    {
-      "title": "Tendenza TikTok",
-      "instagramId": "DXzo-EppgBJ"
-    },
-    {
-      "title": "YouTube Short",
-      "youtubeId": "PvlpLH0dQP0"
-    },
-    {
-      "title": "Reel Instagram",
-      "instagramId": "DU5aPdrApiA"
     }
   ]
 }
