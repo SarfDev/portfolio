@@ -1,50 +1,59 @@
 {
-  "heroVimeoId": "1197611523",
+  "heroVimeoId": "1220405357",
   "clients": [
     {
       "name": "Alessio Piacentini",
       "image": "/clienti/alessio.jpg",
-      "url": ""
+      "subs": "",
+      "handle": ""
     },
     {
       "name": "Andrew Watt",
       "image": "/clienti/ginger.jpg",
-      "url": ""
+      "subs": "",
+      "handle": ""
     },
     {
       "name": "Marco Cappelli",
       "image": "/clienti/marco.jpg",
-      "url": "https://www.youtube.com/@Marco._Cappelli"
+      "subs": "26.1K",
+      "handle": ""
     },
     {
       "name": "Andrea Giudice",
       "image": "/clienti/andrea.jpg",
-      "url": ""
+      "subs": "",
+      "handle": ""
     },
     {
       "name": "Andrea Delle Foglie",
       "image": "/clienti/andreaDelleFoglie.jpg",
-      "url": ""
+      "subs": "",
+      "handle": ""
     },
     {
       "name": "Asian Consulting",
       "image": "/clienti/asianConsulting.jpg",
-      "url": ""
+      "subs": "",
+      "handle": ""
     },
     {
       "name": "Host Viaggi",
       "image": "/clienti/hostViaggi.jpg",
-      "url": "https://www.instagram.com/hostviaggi/"
+      "subs": "",
+      "handle": "@hostviaggi"
     },
     {
       "name": "Angelica",
       "image": "/clienti/angelica.jpg",
-      "url": "https://www.instagram.com/ange0d/"
+      "subs": "",
+      "handle": "@ange0d"
     },
     {
       "name": "Enzo Black",
       "image": "/clienti/enzoblack.jpg",
-      "url": "https://www.instagram.com/enzoblack/"
+      "subs": "",
+      "handle": "@enzoblack"
     }
   ],
   "longFormVideosEN": [
@@ -53,54 +62,24 @@
       "vimeoId": "",
       "heading": "Marco Cappelli",
       "avatar": "/clienti/marco.jpg",
-      "meta": "26.1K subscribers",
-      "url": "https://www.youtube.com/@Marco._Cappelli",
-      "vertical": false
+      "logo": "",
+      "meta": "26.1K subscribers"
     },
     {
       "youtubeId": "",
-      "vimeoId": "1220141519",
-      "heading": "Enzo Black",
-      "avatar": "/clienti/enzoblack.jpg",
-      "meta": "@enzoblack",
-      "url": "https://www.instagram.com/enzoblack/",
-      "vertical": true
-    },
-    {
-      "youtubeId": "5iZDrW_1e0s",
-      "vimeoId": "",
-      "heading": "VSL",
-      "avatar": "",
-      "meta": "",
-      "url": "",
-      "vertical": false
+      "vimeoId": "1197611523",
+      "heading": "Andrea Delle Foglie",
+      "avatar": "/clienti/andreaDelleFoglie.jpg",
+      "logo": "",
+      "meta": ""
     },
     {
       "youtubeId": "ApciVawE5Og",
       "vimeoId": "",
-      "heading": "VSL",
+      "heading": "House of Creators",
       "avatar": "",
-      "meta": "",
-      "url": "",
-      "vertical": false
-    },
-    {
-      "youtubeId": "",
-      "vimeoId": "1220128763",
-      "heading": "Angelica",
-      "avatar": "/clienti/angelica.jpg",
-      "meta": "@ange0d",
-      "url": "https://www.instagram.com/ange0d/",
-      "vertical": true
-    },
-    {
-      "youtubeId": "",
-      "vimeoId": "1220140703",
-      "heading": "Host Viaggi",
-      "avatar": "/clienti/hostViaggi.jpg",
-      "meta": "@hostviaggi · 202K views",
-      "url": "https://www.instagram.com/hostviaggi/",
-      "vertical": true
+      "logo": "/clienti/houseofcreators.svg",
+      "meta": ""
     }
   ],
   "longFormVideosIT": [
