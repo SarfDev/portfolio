@@ -25,7 +25,9 @@ function ArrowIcon() {
 
 export default function Home() {
   const work = portfolioData.longFormVideosEN
-  const clients = portfolioData.clients
+  const shorts = portfolioData.shortFormVideosEN
+  // `clients` e' condivisa con /ita; `clientsEN` aggiunge chi va mostrato solo qui
+  const clients = [...portfolioData.clients, ...portfolioData.clientsEN]
 
   return (
     <div className="min-h-[100dvh] bg-[#FAFAF8] text-[#111827]">
@@ -133,6 +135,48 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Short form: verticali, per i clienti che cercano reel e short */}
+      {shorts.length > 0 && (
+        <section className="px-6 pb-20">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-3">Shorts &amp; reels</h2>
+            <p className="text-center text-[#6B7280] text-lg mb-14">Vertical edits built for the feed.</p>
+
+            {/* Griglia tipo feed: due colonne sul telefono, quattro da desktop */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
+              {shorts.map((item) => (
+                <div key={item.vimeoId}>
+                  <div className="aspect-[9/16] rounded-2xl overflow-hidden border border-black/[0.06] bg-black">
+                    <iframe
+                      src={`https://player.vimeo.com/video/${item.vimeoId}?title=0&byline=0&portrait=0`}
+                      title={item.heading}
+                      className="w-full h-full"
+                      allow="fullscreen; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+
+                  <div className="flex items-center gap-2.5 mt-3">
+                    {item.avatar && (
+                      <img
+                        src={item.avatar}
+                        alt={item.heading}
+                        loading="lazy"
+                        className="w-8 h-8 rounded-full object-cover border border-black/[0.08] flex-shrink-0"
+                      />
+                    )}
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold leading-snug truncate">{item.heading}</p>
+                      {item.meta && <p className="text-xs text-[#6B7280] truncate">{item.meta}</p>}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Testimonials: wide strips, so one column keeps them readable */}
       <section className="px-6 py-20 bg-white border-y border-black/[0.06]">

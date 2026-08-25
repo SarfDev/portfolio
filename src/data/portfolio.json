@@ -56,6 +56,14 @@
       "handle": "@enzoblack"
     }
   ],
+  "clientsEN": [
+    {
+      "name": "Leonardo Pippa",
+      "image": "/clienti/leonardo.jpg",
+      "subs": "49.9K",
+      "handle": "@leonardo316p"
+    }
+  ],
   "longFormVideosEN": [
     {
       "youtubeId": "8i4lXshL6j0",
@@ -79,6 +87,32 @@
       "heading": "House of Creators",
       "avatar": "",
       "logo": "/clienti/houseofcreators.svg",
+      "meta": ""
+    }
+  ],
+  "shortFormVideosEN": [
+    {
+      "vimeoId": "1221246405",
+      "heading": "@leonardo316p",
+      "avatar": "/clienti/leonardo.jpg",
+      "meta": ""
+    },
+    {
+      "vimeoId": "1220141519",
+      "heading": "@enzoblack",
+      "avatar": "/clienti/enzoblack.jpg",
+      "meta": ""
+    },
+    {
+      "vimeoId": "1220140703",
+      "heading": "@hostviaggi",
+      "avatar": "/clienti/hostViaggi.jpg",
+      "meta": ""
+    },
+    {
+      "vimeoId": "1220128763",
+      "heading": "@ange0d",
+      "avatar": "/clienti/angelica.jpg",
       "meta": ""
     }
   ],
