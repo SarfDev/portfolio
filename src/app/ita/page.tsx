@@ -1,7 +1,11 @@
+import type { Metadata } from 'next'
 import PortfolioPageIT from './PortfolioPageIT'
-import portfolioData from '@/data/portfolio.json'
-import { copyIT } from '@/data/copy'
+
+export const metadata: Metadata = {
+  title: "King Osei — Video Editor",
+  description: "Editing long form e short per creator e founder.",
+}
 
 export default function HomeIT() {
-  return <PortfolioPageIT copy={copyIT} videos={portfolioData.longFormVideosIT} />
+  return <PortfolioPageIT />
 }

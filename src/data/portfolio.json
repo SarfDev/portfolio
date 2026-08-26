@@ -54,9 +54,7 @@
       "image": "/clienti/enzoblack.jpg",
       "subs": "",
       "handle": "@enzoblack"
-    }
-  ],
-  "clientsEN": [
+    },
     {
       "name": "Leonardo Pippa",
       "image": "/clienti/leonardo.jpg",
@@ -90,7 +88,25 @@
       "meta": ""
     }
   ],
-  "shortFormVideosEN": [
+  "longFormVideosIT": [
+    {
+      "youtubeId": "",
+      "vimeoId": "1197611523",
+      "heading": "Andrea Delle Foglie",
+      "avatar": "/clienti/andreaDelleFoglie.jpg",
+      "logo": "",
+      "meta": ""
+    },
+    {
+      "youtubeId": "ApciVawE5Og",
+      "vimeoId": "",
+      "heading": "House of Creators",
+      "avatar": "",
+      "logo": "/clienti/houseofcreators.svg",
+      "meta": ""
+    }
+  ],
+  "shortFormVideos": [
     {
       "vimeoId": "1221246405",
       "heading": "@leonardo316p",
@@ -114,24 +130,6 @@
       "heading": "@ange0d",
       "avatar": "/clienti/angelica.jpg",
       "meta": ""
-    }
-  ],
-  "longFormVideosIT": [
-    {
-      "title": "Creare un sito web con l'AI non è mai stato così facile [Tutorial completo]",
-      "youtubeId": "8i4lXshL6j0"
-    },
-    {
-      "title": "SAAS",
-      "youtubeId": "9cg36umXWTg"
-    },
-    {
-      "title": "Serie di Formazione Aziendale",
-      "youtubeId": "5iZDrW_1e0s"
-    },
-    {
-      "title": "Evento di Lancio Prodotto",
-      "youtubeId": "ApciVawE5Og"
     }
   ]
 }

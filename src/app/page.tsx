@@ -25,9 +25,8 @@ function ArrowIcon() {
 
 export default function Home() {
   const work = portfolioData.longFormVideosEN
-  const shorts = portfolioData.shortFormVideosEN
-  // `clients` e' condivisa con /ita; `clientsEN` aggiunge chi va mostrato solo qui
-  const clients = [...portfolioData.clients, ...portfolioData.clientsEN]
+  const shorts = portfolioData.shortFormVideos
+  const clients = portfolioData.clients
 
   return (
     <div className="min-h-[100dvh] bg-[#FAFAF8] text-[#111827]">
